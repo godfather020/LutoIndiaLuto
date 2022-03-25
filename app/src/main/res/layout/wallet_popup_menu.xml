@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_125sdp"
+    android:layout_height="@dimen/_167sdp"
+    android:background="@drawable/bg_wallet_popup"
+    android:padding="20dp"
+    android:layout_margin="8dp"
+    android:elevation="@dimen/_10sdp"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gL_horizontal_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".02" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gL_horizontal_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".32" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gL_vertical_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.03" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/gL_horizontal_bottom"
+            app:layout_constraintStart_toStartOf="@+id/gL_vertical_start"
+            app:layout_constraintTop_toTopOf="@+id/gL_horizontal_top">
+
+            <TextView
+                android:id="@+id/wallet_popup_txt_price_amt_heading"
+                style="@style/TextSubHeader"
+
+                android:text="@string/your_wallet_balance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_vsm"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/wallet_popup_img_price_amt"
+                android:layout_width="0sp"
+                android:layout_height="0dp"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/wallet_popup_txt_price_amt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/wallet_popup_txt_price_amt" />
+
+
+            <TextView
+                android:id="@+id/wallet_popup_txt_price_amt"
+                style="@style/TextHeader"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_lg"
+
+                app:layout_constraintStart_toEndOf="@+id/wallet_popup_img_price_amt"
+                app:layout_constraintTop_toBottomOf="@+id/wallet_popup_txt_price_amt_heading" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/wallet_popup_txt_add_money"
+            style="@style/TextSubHeader"
+            android:layout_marginTop="20dp"
+            android:text="@string/load_money"
+            android:textColor="@color/purple_500"
+            android:textSize="@dimen/txt_sm"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/load_money"
+            app:layout_constraintStart_toStartOf="@+id/gL_vertical_start"
+            app:layout_constraintTop_toTopOf="@+id/gL_horizontal_bottom" />
+
+        <TextView
+            android:id="@+id/wallet_popup_txt_cash_out"
+            style="@style/TextSubHeader"
+            android:text="@string/cash_out"
+            android:textColor="@color/purple_500"
+            android:textSize="@dimen/txt_sm"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/cash_out"
+            app:layout_constraintStart_toStartOf="@+id/wallet_popup_txt_add_money"
+            app:layout_constraintTop_toBottomOf="@+id/wallet_popup_txt_add_money" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

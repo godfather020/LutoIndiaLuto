@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="txt_vvsm">@dimen/_6sdp</dimen>
+    <dimen name="txt_vsm">@dimen/_8sdp</dimen>
+    <dimen name="txt_sm">@dimen/_10sdp</dimen>
+    <dimen name="txt_md">@dimen/_12sdp</dimen>
+    <dimen name="txt_lg">@dimen/_14sdp</dimen>
+    <dimen name="txt_vlg">@dimen/_16sdp</dimen>
+    <dimen name="txt_vvlg">@dimen/_18sdp</dimen>
+</resources>

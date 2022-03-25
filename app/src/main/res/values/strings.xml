@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">LutoIndiaLuto</string>
+    <string name="get_your_new_lottery">Get Your New Lottery</string>
+    <string name="get_start_sub_header">Reference site about Lorem Ipsum giving information on its origins.</string>
+    <string name="go_for_ticket">Go for ticket</string>
+    <string name="welcome">Welcome,</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="enter_amt">Enter Coins</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="mobile_no">Mobile Number</string>
+    <string name="create_acc">Create Account</string>
+    <string name="create_acc_">Create Account,</string>
+    <string name="sign_up_to_git_started">Sign up to git started!</string>
+    <string name="user_name">User Name</string>
+    <string name="refferal_code">Refferal Code</string>
+    <string name="profile">Profile</string>
+    <string name="notification">Notification</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="my_ticket">My Tickets</string>
+    <string name="transaction_history">Transaction History</string>
+    <string name="setting">Setting</string>
+    <string name="ticket_list">Ticket List</string>
+    <string name="buy_ticket">Buy Tickets</string>
+    <string name="help">Help</string>
+    <string name="private_policy">Private Policy</string>
+    <string name="Term_and_condition">Terms &amp; Condition</string>
+    <string name="logout">Logout</string>
+    <string name="open_Drawer">Open Drawer</string>
+    <string name="close_Drawer">Close Drawer</string>
+    <string name="lets_start_your_journey">Let\'s start your journey</string>
+    <string name="total_price_">Total Price :</string>
+    <string name="top_winners">Top Winners</string>
+    <string name="latest_draw">Daily Draw</string>
+    <string name="monthly_draw">Monthly Draw</string>
+    <string name="occasion_draw">Occasion Draw</string>
+    <string name="jackpot">Jackpot</string>
+    <string name="purchased_ticket">Ticket Price</string>
+    <string name="latest_lottery_heading">Bumper Lottery Club</string>
+    <string name="latest_lottery_sub_heading">Draw took place on</string>
+    <string name="price_money">Price Money</string>
+    <string name="purchase">Purchase</string>
+    <string name="ticket_price">Ticket Price</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="your_wallet_balance">Your Wallet Balance</string>
+    <string name="you_have_no_data">You have no data.</string>
+    <string name="please_registered_your_number.">Please registered your number.</string>
+    <string name="invalid_phone_number">Invalid phone number</string>
+    <string name="please_enter_phone_number">Please enter valid phone number.</string>
+    <string name="please_enter_user_name">Please enter user name.</string>
+    <string name="please_enter_otp">Please enter valid otp.</string>
+    <string name="you_are_registered_successfully">You are registered successfully.</string>
+    <string name="daily">daily</string>
+    <string name="monthly">monthly</string>
+    <string name="occasionally">occasionally</string>
+    <string name="load_money">Add Coins</string>
+    <string name="cash_out">Withdrawal Coins</string>
+    <string name="buy">Buy</string>
+    <string name="paytm">Paytm</string>
+    <string name="google_pay">Google Pay</string>
+    <string name="phone_pe">Phone pe</string>
+    <string name="payments_show_name" translatable="false">Successfully received payment data for %s!</string>
+    <string name="deducted">deducted</string>
+    <string name="pending">pending</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="are_you_want_to_logout">Are you want to logout</string>
+    <string name="upload_successfully">Upload Successfully</string>
+    <string name="insufficient_fund">Insufficient coins in your wallet please add coins.</string>
+    <string name="insufficient_fund_with">Insufficient coins in your wallet.</string>
+    <string name="buy_ticket_success">Ticket has been buy successfully</string>
+    <string name="select_ticker">Please select ticket.</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+</resources>

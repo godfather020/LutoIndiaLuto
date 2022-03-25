@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="ticket"
+            type="com.example.lottry.data.remote.retrofit.response.Response_Ticket_List" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/rv_ticket_list_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ticket01___2_"
+    android:padding="20dp"
+    android:layout_margin="8dp"
+    android:elevation="@dimen/_10sdp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".63"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/gl_vertical_end"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/winner_icon" />
+
+            <TextView
+                android:id="@+id/rv_ticket_list_txt_draw_price_money_heading"
+                style="@style/TextSubHeader"
+                android:layout_gravity="center"
+                android:text="@string/price_money"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_sm" />
+
+
+            <TextView
+                android:id="@+id/ticket_list_draw_price_money"
+                style="@style/TextSemiBold"
+                android:layout_gravity="center"
+                android:text="1,50,000"
+                android:textColor="@color/white"
+
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/ticket_list_txt_lottery_no"
+            style="@style/TextSemiBold"
+            android:layout_width="0dp"
+            android:text="12345678910231"
+            android:textSize="@dimen/txt_vlg"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/gl_vertical_end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ticket_list_txt_time"
+            style="@style/TextSubHeader"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/icon_watch"
+            android:drawablePadding="5dp"
+            android:visibility="gone"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text=""
+            android:textColor="@color/grey"
+            android:textSize="@dimen/txt_sm"
+            app:layout_constraintBottom_toTopOf="@+id/ticket_list_txt_ticket_price_heading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ticket_list_txt_lottery_no" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ticket_list_txt_time"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat3"
+            app:layout_constraintBottom_toTopOf="@+id/ticket_list_txt_ticket_price"
+            android:paddingBottom="@dimen/_4sdp"
+            >
+
+        <TextView
+            android:id="@+id/ticket_list_txt_date"
+            style="@style/TextSubHeader"
+            android:drawableLeft="@drawable/icon_watch"
+            android:drawablePadding="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text="Open Monthly on 10 at 12"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/txt_sm"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ticket_list_txt_time" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            style="@style/Button"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/green"
+            android:paddingStart="10dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="1dp"
+            android:text="@string/purchase"
+            android:textSize="@dimen/txt_vsm"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/ticket_list_txt_ticket_price_heading"
+            style="@style/TextLight"
+            android:text="@string/ticket_price"
+            android:textSize="@dimen/txt_md"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/ticket_list_txt_ticket_price"
+            style="@style/TextSubHeader"
+            android:text=""
+            android:textSize="@dimen/txt_lg"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ticket_list_txt_ticket_price_heading" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/ticket_list_img_check"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/icon_check_ticket"-->
+<!--           />-->
+
+        <CheckBox
+            android:theme="@style/checkBoxStyle"
+            android:id="@+id/ticket_list_img_check_box"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:button="@drawable/selector_checkbox"
+            android:layout_marginStart="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ticket_list_txt_ticket_price" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

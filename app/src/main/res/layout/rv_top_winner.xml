@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:layout_margin="3dp"
+    android:elevation="@dimen/_10sdp">
+
+    <TextView
+        android:id="@+id/rv_top_winner_txt_username"
+        style="@style/TextExtraBold"
+        android:gravity="center"
+        android:paddingStart="@dimen/_8sdp"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_vsm"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/rv_top_winner_img_user"
+        app:layout_constraintStart_toStartOf="@+id/rv_top_winner_img_user"
+        app:layout_constraintTop_toBottomOf="@+id/rv_top_winner_img_user" />
+
+    <!--<TextView
+        android:id="@+id/rv_top_winner_txt_winning_price"
+        style="@style/TextExtraBold"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:paddingStart="@dimen/_8sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_vsm"
+        app:layout_constraintEnd_toEndOf="@+id/rv_top_winner_img_user"
+        app:layout_constraintStart_toStartOf="@+id/rv_top_winner_img_user"
+        app:layout_constraintTop_toBottomOf="@+id/rv_top_winner_txt_username" />
+-->
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/rv_top_winner_img_user"
+            style="@style/TextExtraBold"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            android:src="@drawable/circle_demo_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+   <!-- <data>
+
+        <variable
+            name="trans_item"
+            type="com.example.spider.model.Transactionhistory"
+            />
+    </data>-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cl_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/_60sdp"
+    android:layout_margin="@dimen/_3sdp"
+    android:background="@drawable/lottery_banner"
+    android:padding="@dimen/_10sdp">
+<!--    -->
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_website"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+<!--    style="@style/circle_image_view"-->
+
+    <TextView
+        android:id="@+id/txt_tran_header"
+        style="@style/TextHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_3sdp"
+        android:textSize="@dimen/txt_sm"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toStartOf="@+id/txt_tran_amt"
+        app:layout_constraintStart_toEndOf="@+id/img_website"
+        app:layout_constraintTop_toTopOf="@+id/img_website" />
+<!--    android:text="@{trans_item.title}"-->
+
+    <TextView
+        android:id="@+id/txt_tran_amt"
+        style="@style/TextSubHeader"
+        android:textStyle="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/txt_tran_header" />
+
+<!--    android:text="@{trans_item.coins}"-->
+
+    <TextView
+        android:id="@+id/txt_tran_date"
+        style="@style/TextSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_website"
+        app:layout_constraintStart_toStartOf="@+id/txt_tran_header"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tran_header" />
+<!--    android:text="@{trans_item.notificationDate}"-->
+    <TextView
+        android:id="@+id/txt_tran_amt_status"
+        style="@style/TextSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_tran_date"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        />
+<!--    android:text="@{trans_item.status}"-->
+
+    <ImageView
+        android:id="@+id/img_btn_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/img_website"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_website" />
+<!--    android:src="@drawable/ic_baseline_arrow_right_24"-->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".91"/>
+
+
+
+   <!-- <LinearLayout
+        android:id="@+id/ll_img"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_3sdp"
+        android:weightSum="7"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/txt_name_website"
+        app:layout_constraintStart_toStartOf="@+id/txt_name_website"
+        app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+        <ImageView
+            android:id="@+id/img_cricket"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_cricket"
+            app:layout_constraintBottom_toBottomOf="@+id/img_website"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_website" />
+        <ImageView
+            android:id="@+id/img_football"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_football"
+            
+            app:layout_constraintBottom_toBottomOf="@+id/img_website"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_website" />
+        <ImageView
+            android:id="@+id/img_tenis"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_tenis"
+            app:layout_constraintBottom_toBottomOf="@+id/img_website"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_website" />
+        <ImageView
+            android:id="@+id/img_horse"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_horse"
+            app:layout_constraintBottom_toBottomOf="@+id/img_website"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_website" />
+        <ImageView
+            android:id="@+id/img_casino"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_casino"
+            app:layout_constraintBottom_toBottomOf="@+id/img_website"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_website" />
+        <ImageView
+            android:id="@+id/img_cards"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_cards"
+            app:layout_constraintBottom_toBottomOf="@+id/img_website"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_website" />
+        <ImageView
+            android:id="@+id/img_politics"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_politics"
+            app:layout_constraintBottom_toBottomOf="@+id/img_website"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_website" />
+
+    </LinearLayout>-->
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_option"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/img_btn_option"
+        app:layout_constraintStart_toStartOf="@+id/img_website"
+        app:layout_constraintTop_toBottomOf="@+id/ll_img">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rv_demo_id"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txt_name_demoId_main_header"
+                style="@style/text_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Demo ID"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_btn_login_website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_launch_24"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_name_demoId_main_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_name_demoId_main_header" />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/txt_name_demoId_main_header"/>
+
+            <TextView
+                android:id="@+id/txt_name_demoId_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Demo Id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view1" />
+            <TextView
+                android:id="@+id/txt_name_demoId"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="spider4"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableEnd="@drawable/txt_drawable"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_name_demoId_header" />
+            <TextView
+                android:id="@+id/txt_name_demoPassword_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Demo Password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_name_demoId_header" />
+
+            <TextView
+                android:id="@+id/txt_name_demoPassword"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="spider4"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableEnd="@drawable/txt_drawable"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_name_demoPassword_header" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_minBet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rv_demo_id"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_demo">
+
+            <TextView
+                android:id="@+id/txt_minBet_header"
+                style="@style/text_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Min bet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_money_chips"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_minBet_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_minBet_header" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/txt_minBet_header" />
+
+            <TextView
+                android:id="@+id/txt_cricket_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Cricket"
+                android:drawableStart="@drawable/cricket"
+                android:drawableTint="@color/red"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view2" />
+
+            <TextView
+                android:id="@+id/txt_cricket_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_cricket_header" />
+
+            <TextView
+                android:id="@+id/txt_football_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Football"
+                android:drawableStart="@drawable/football"
+                android:drawableTint="@color/red"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_cricket_header" />
+
+            <TextView
+                android:id="@+id/txt_football_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_football_header" />
+              <TextView
+                android:id="@+id/txt_tenis_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Tenis"
+                android:drawableStart="@drawable/tenis" 
+                android:drawableTint="@color/red"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_football_header" />
+
+            <TextView
+                android:id="@+id/txt_tenis_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_tenis_header" />
+              <TextView
+                android:id="@+id/txt_horseRacing_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Horse Racing"
+                android:drawableStart="@drawable/horse"
+                  android:drawableTint="@color/red"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_tenis_header" />
+
+            <TextView
+                android:id="@+id/txt_horseRacing_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_horseRacing_header" />
+              <TextView
+                android:id="@+id/txt_liveCasino_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Live Casino"
+                android:drawableStart="@drawable/casino"
+                  android:drawableTint="@color/red"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_horseRacing_header" />
+
+            <TextView
+                android:id="@+id/txt_liveCasino_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_liveCasino_header" />
+              <TextView
+                android:id="@+id/txt_cards_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Cards"
+                android:drawableStart="@drawable/cards"
+                  android:drawableTint="@color/red"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_liveCasino_header" />
+
+            <TextView
+                android:id="@+id/txt_cards_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_cards_header" />
+              <TextView
+                android:id="@+id/txt_politics_header"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Politics"
+                android:drawableStart="@drawable/politics"
+                  android:drawableTint="@color/red"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_cards_header" />
+
+            <TextView
+                android:id="@+id/txt_politics_minBet"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_politics_header" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            style="@style/Button"
+            android:textSize="@dimen/txt_size_vvsm"
+            android:text="Create"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_minBet" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

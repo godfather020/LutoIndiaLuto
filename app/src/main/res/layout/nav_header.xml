@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:paddingTop="20dp"
+    android:paddingEnd="19dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/nav_header_img_user_name"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginStart="19dp"
+        android:src="@drawable/circle_demo_img"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_header_img_user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nav_header_img_user_name"
+        app:layout_constraintTop_toTopOf="@+id/nav_header_img_user_name">
+
+        <TextView
+            android:id="@+id/nav_header_txt_user_name"
+            style="@style/TextHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anil Makvana"
+            android:textColor="@color/white"
+
+            />
+
+        <TextView
+            android:id="@+id/nav_header_txt_sub_heading"
+            style="@style/TextSubHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1234567890"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="@+id/nav_header_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/nav_header_user_name" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/doted_line"
+        android:layerType="software"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
