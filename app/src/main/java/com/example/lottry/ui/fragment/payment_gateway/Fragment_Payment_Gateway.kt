@@ -225,7 +225,7 @@ class Fragment_Payment_Gateway : Base_Fragment(), View.OnClickListener {
                         if(withdraw){
                             deductWalletBalance(amt,number,"PhonePe")
                         }else{
-                            requestPaymentPhonePay();
+                            requestPaymentPhonePay(amt);
                         }
                        // showToast("Under Process")
                         dialog.dismiss()
@@ -415,7 +415,7 @@ class Fragment_Payment_Gateway : Base_Fragment(), View.OnClickListener {
     }
 
 
-    private fun requestPaymentPhonePay() {
+    private fun requestPaymentPhonePay(amt: String) {
 
         val timeStamp: String =
             java.lang.String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()))
@@ -425,7 +425,7 @@ class Fragment_Payment_Gateway : Base_Fragment(), View.OnClickListener {
         //val newUri=Uri.parse("upi://pay?pa=8120274562@ybl&pn=Luto india luto&tr=EZV2022031015282639175&am=1.0&cu=INR&mc=amount")
         //val phonepeuri3 = "upi://pay?pa=Q962452870@ybl&pn=Paytm%20Merchant&mode=02&am=1.0"
         //val phonepeuri3 ="upi://pay?pa=Q510225757@ybl&pn=Merchant%20Name&am=1&cu=INR&mode=02&orgid=000000&tn=Add%20Coins&tr="+timeStamp
-        val phonepeuri3 = "upi://pay?pa=Q193681286@ybl&pn=Merchant%20Name&am=1&cu=INR&mode=02&orgid=000000&tn=Add%20Coins&tr="+timeStamp
+        val phonepeuri3 = "upi://pay?pa=Q193681286@ybl&pn=Merchant%20Name&am="+amt+"&cu=INR&mode=02&orgid=000000&tn=Add%20Coins&tr="+timeStamp
         Log.d("PhonepeUri", phonepeuri3)
 
         val intent = Intent(Intent.ACTION_VIEW,Uri.parse(phonepeuri3))
