@@ -28,6 +28,8 @@ class FirebaseCloudMsg : FirebaseMessagingService() {
 
     private fun sendRegistrationToServer(token: String) {
 
+
+
       //  Toast.makeText(this, token, Toast.LENGTH_LONG).show()
     }
 }
