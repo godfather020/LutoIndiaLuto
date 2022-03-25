@@ -1,6 +1,7 @@
 package com.example.lottry.ui.activity.login
 
 import android.Manifest
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -43,7 +44,7 @@ import retrofit2.Response
 import java.util.ArrayList
 import javax.inject.Inject
 
-class LoginActivity : CustomAppActivityCompatViewImpl(){
+class LoginActivity : CustomAppActivityCompatViewImpl() {
 
     lateinit var btnSubmit:Button
     lateinit var viewModel: LoginViewModel
@@ -103,6 +104,7 @@ class LoginActivity : CustomAppActivityCompatViewImpl(){
 
             binding.progessBar.visibility= View.VISIBLE
             if(validation()){
+
 
                 viewModel.verify_otp(this,binding,binding.loginEdtMobileNo.text.toString(),binding.otpView.otp.toString()).observe(this@LoginActivity, Observer {
 
@@ -241,6 +243,8 @@ class LoginActivity : CustomAppActivityCompatViewImpl(){
     companion object {
         const val REQUEST_ID_MULTIPLE_PERMISSIONS = 3
     }
+
+
 
 }
 

@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lottry">
 
-<uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <queries>
-        <package android:name="net.one97.paytm"/>
-        <package android:name="com.phonepe.app"/>
+        <package android:name="net.one97.paytm" />
+        <package android:name="com.phonepe.app" />
         <package android:name="com.google.android.apps.nbu.paisa.user" />
     </queries>
 
@@ -22,20 +22,19 @@
         android:name="com.example.lottry.application.WikiApplication"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@drawable/logo"
         android:theme="@style/Theme.Lottry"
-        >
+        android:usesCleartextTraffic="true">
 
 
         <activity
             android:name="com.example.lottry.ui.activity.splash.SplashActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="LOTTREY_SPLASH" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -44,8 +43,7 @@
         <activity
             android:name="com.example.lottry.ui.activity.get_start.Get_Started_Activity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="LOTTREY_GET_STARTED" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -54,8 +52,7 @@
         <activity
             android:name="com.example.lottry.ui.activity.login.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="LOTTREY_LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -64,8 +61,7 @@
         <activity
             android:name="com.example.lottry.ui.activity.registration.RegistrationActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="LOTTREY_REGISTRATION" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -74,32 +70,38 @@
         <activity
             android:name="com.example.lottry.ui.activity.main.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="LOTTREY_MAIN"/>
+                <action android:name="LOTTREY_MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.help.Fragment_help"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="LOTTREY_HELP" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-<!--        <activity-->
-<!--            android:name="com.paytm.pgsdk.PaytmPGActivity"-->
-<!--            android:configChanges="keyboardHidden|orientation|keyboard"-->
-<!--            android:screenOrientation="portrait" />-->
+        <!--        <activity-->
+        <!--            android:name="com.paytm.pgsdk.PaytmPGActivity"-->
+        <!--            android:configChanges="keyboardHidden|orientation|keyboard"-->
+        <!--            android:screenOrientation="portrait" />-->
 
         <!-- This element is required in order to use the PaymentsClient -->
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
+
+        <service
+            android:name=".ui.activity.splash.FirebaseCloudMsg"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
     </application>
 

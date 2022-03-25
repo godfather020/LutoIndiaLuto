@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "739945952866",
+    "project_id": "lutoindialuto-df19d",
+    "storage_bucket": "lutoindialuto-df19d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739945952866:android:c3867f40c21d041028033b",
+        "android_client_info": {
+          "package_name": "com.LutoIndiaLuto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739945952866-csvuk2jo8gjve1g7d2cucaifbjf6aift.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6tCjpaUtkzoqPndZVri1RZZUPWSWH-VM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739945952866-csvuk2jo8gjve1g7d2cucaifbjf6aift.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

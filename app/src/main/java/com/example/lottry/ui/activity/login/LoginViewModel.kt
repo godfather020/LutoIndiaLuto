@@ -77,6 +77,8 @@ class LoginViewModel : ViewModel() {
 
         requestVerify.phoneNumber=phoneNumber
         requestVerify.otp=otp
+        requestVerify.deviceType="Android"
+        requestVerify.deviceToken=Constant.ApiConstant.DEVICE_TOKEN
 
         getResposneOfVerifyOtpFromApi(requestVerify)
 

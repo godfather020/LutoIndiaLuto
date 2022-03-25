@@ -12,4 +12,10 @@ class Request_Verify {
     @SerializedName("otp")
     var otp:String=""
 
+    @SerializedName("deviceToken")
+    var deviceToken:String = ""
+
+    @SerializedName("deviceType")
+    var deviceType:String = ""
+
 }

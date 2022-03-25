@@ -60,6 +60,7 @@ class Constant {
         internal const val ADD_WALLET_BALANCE="v1/addWallet"
         internal const val DEDUCT_WALLET_BALANCE="v1/withdraw"
         internal const val SET_PROFILE_IMAGE="v1/uploadProfilePic"
+        internal var DEVICE_TOKEN = ""
 
     }
 
