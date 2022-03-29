@@ -44,6 +44,106 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buy_ticket_txt_draw" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/digit_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buy_ticket_btn_ticket"
+        >
+
+        <TextView
+            android:id="@+id/ending_digits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ticket ending with digits"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ending_digits">
+
+            <RadioButton
+                android:id="@+id/radio_0"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:button="null"
+                android:background="@drawable/custom_radio"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_1"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_2"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_3"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_4"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_5"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_6"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_7"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_8"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/radio_9"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/buy_ticket_rv"
@@ -55,7 +155,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buy_ticket_btn_ticket"
+        app:layout_constraintTop_toBottomOf="@+id/digit_choice"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/rv_ticket_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

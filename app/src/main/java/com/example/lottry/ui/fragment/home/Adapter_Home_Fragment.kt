@@ -71,8 +71,8 @@ lateinit var activity:AppCompatActivity
 
             val rnds1 = (6..9).random()
             val rnds2 = (6..9).random()
-            val rnds3 = (6..9).random()
-            val rnds4 = (6..9).random()
+            val rnds3 = (0..9).random()
+            val rnds4 = (0..9).random()
 
             val user = winners.rows!!.get(position).fakeUser
 

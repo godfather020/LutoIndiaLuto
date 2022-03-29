@@ -9,7 +9,7 @@
         app:showAsAction="always"/>
 
     <item android:id="@+id/option_wallet"
-        android:title="@string/transaction_history"
+        android:title="@string/Wallet"
         android:icon="@drawable/wallet"
         app:showAsAction="always"/>
 </menu>

@@ -56,7 +56,9 @@ class Row : Serializable{
     @Expose
     var ticketType: String? = null
 
-
+    @SerializedName("createdAt")
+    @Expose
+    var createdAt: String? = null
 
     @SerializedName("ticketNumber")
     @Expose

@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,13 +17,12 @@ import com.example.lottry.R
 import com.example.lottry.baseclass.fragment.Base_Fragment
 import com.example.lottry.data.remote.retrofit.api.Apis
 import com.example.lottry.data.remote.retrofit.response.HomeTempResponse
-import com.example.lottry.data.remote.retrofit.response.Row
 import com.example.lottry.databinding.FragmentHomeBinding
 import com.example.lottry.ui.activity.main.MainActivity
-import com.example.lottry.ui.fragment.buy_ticket.Adapter_Buy_Ticket
 import com.example.lottry.ui.fragment.buy_ticket.Fragment_Buy_Ticket
-import com.softs.meetupfellow.components.activity.CustomAppActivityCompatViewImpl
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
 
 open class Fragment_Home : Base_Fragment() ,View.OnClickListener{
 

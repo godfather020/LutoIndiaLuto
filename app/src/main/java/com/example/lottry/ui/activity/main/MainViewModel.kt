@@ -1,6 +1,7 @@
 package com.example.lottry.ui.activity.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
@@ -66,7 +67,7 @@ class MainViewModel : ViewModel() {
         requestSetprofileimg.image=imgUrl
 
         setImgFromApi(requestSetprofileimg)
-
+        Log.d("reqsetimg", requestSetprofileimg.toString())
         return commonResponse
     }
 
@@ -80,6 +81,7 @@ class MainViewModel : ViewModel() {
        apis.setProfileImg(
            it,param.image )}!!
 
+       Log.d("paramimg", param.image)
 
        call.enqueue(object : Callback<Response_Common>{
            
@@ -88,6 +90,7 @@ class MainViewModel : ViewModel() {
                response: Response<Response_Common>
            ) {
 //               TODO("Not yet implemented")
+               Log.d("response", response.toString())
                if(response.isSuccessful) {
 //                   binding.progessBar.visibility= View.GONE
                    commonResponse.value=response.body()!!

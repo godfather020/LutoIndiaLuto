@@ -31,18 +31,18 @@
     <string name="open_Drawer">Open Drawer</string>
     <string name="close_Drawer">Close Drawer</string>
     <string name="lets_start_your_journey">Let\'s start your journey</string>
-    <string name="total_price_">Total Price :</string>
+    <string name="total_price_">Total Coins :</string>
     <string name="top_winners">Top Winners</string>
     <string name="latest_draw">Daily Draw</string>
     <string name="monthly_draw">Monthly Draw</string>
     <string name="occasion_draw">Occasion Draw</string>
     <string name="jackpot">Jackpot</string>
-    <string name="purchased_ticket">Ticket Price</string>
+    <string name="purchased_ticket">Required Coins</string>
     <string name="latest_lottery_heading">Bumper Lottery Club</string>
     <string name="latest_lottery_sub_heading">Draw took place on</string>
-    <string name="price_money">Price Money</string>
+    <string name="price_money">Price Coins</string>
     <string name="purchase">Purchase</string>
-    <string name="ticket_price">Ticket Price</string>
+    <string name="ticket_price">Required Coins</string>
     <string name="buy_now">Buy Now</string>
     <string name="your_wallet_balance">Your Wallet Balance</string>
     <string name="you_have_no_data">You have no data.</string>
@@ -72,6 +72,7 @@
     <string name="insufficient_fund_with">Insufficient coins in your wallet.</string>
     <string name="buy_ticket_success">Ticket has been buy successfully</string>
     <string name="select_ticker">Please select ticket.</string>
+    <string name="Wallet">Wallet</string>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

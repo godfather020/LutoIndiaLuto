@@ -829,6 +829,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
 
         viewModel.set_profileImage(this,binding,imgUrl).observe(this, androidx.lifecycle.Observer {
 
+            Log.d("it", it.toString())
+
             if(it!=null){
 
                if( it.getSuccess()==true){
@@ -898,7 +900,7 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
                     binding.nav.get(0).findViewById(R.id.nav_header_img_user_name),
                     resources.getDrawable(R.drawable.ic_launcher_background)
                 )
-
+                Log.d("imgUri", uri.toString())
                 setProfileImage(uri.toString())
                 bitmap = result.extras!!["data"] as Bitmap?
                 //                bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), Uri.parse(result.getData().getExtras().get("data").toString()));

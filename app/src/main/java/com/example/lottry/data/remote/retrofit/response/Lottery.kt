@@ -30,4 +30,8 @@ class Lottery {
     @Expose
     var openTime: String? = null
 
+    @SerializedName("openTimeDesc")
+    @Expose
+    var openTimeDesc: String? = null
+
 }

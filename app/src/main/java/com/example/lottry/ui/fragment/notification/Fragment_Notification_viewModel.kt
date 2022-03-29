@@ -77,6 +77,7 @@ class Fragment_Notification_viewModel : ViewModel() {
             ) {
 //               TODO("Not yet implemented")
                 if(response.isSuccessful) {
+
                     binding!!.progessBar.visibility= View.GONE
                     commonResponse.value=response.body()!!
 

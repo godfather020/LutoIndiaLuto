@@ -1,6 +1,9 @@
 package com.example.lottry.ui.fragment.my_ticket
 
 import android.app.Activity
+import android.content.res.Resources
+import android.os.Build
+import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +12,23 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.parser.IntegerParser
 import com.example.lottry.BR
 import com.example.lottry.R
 import com.example.lottry.data.remote.retrofit.response.DailyTickets
 import com.example.lottry.data.remote.retrofit.response.Response_Ticket_List
 import com.example.lottry.data.remote.retrofit.response.Row
+import java.time.LocalTime
+import java.util.*
+import javax.annotation.Resource
+import kotlin.collections.ArrayList
 
 
 open class Adapter_My_Ticket() : RecyclerView.Adapter<Adapter_My_Ticket.MyViewHoder>() {
@@ -54,7 +64,7 @@ lateinit var activity:AppCompatActivity
 //        holder.binding.executePendingBindings()
 
 //        val selectedTicket: Response_Ticket_List=ticketList.get(position)
-
+        holder.item.visibility = View.VISIBLE
 
        val row=dailyTickets.rows!!.get(position)
 
@@ -66,6 +76,71 @@ lateinit var activity:AppCompatActivity
         holder.txt_ticketDate.text=row.lottery!!.openTime.toString()
         Log.e("response",row.ticketPrice.toString())
 
+        val hours = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalTime.now().hour
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+
+        val minutes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalTime.now().minute
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+
+        /*var currentTime = hours
+
+        var createdTime = row.createdAt.toString()
+
+        Log.d("cratedTime", createdTime)
+
+        createdTime = createdTime.replaceBefore("T", "")
+
+        Log.d("cratedTimeTrim", createdTime)
+
+        createdTime = createdTime.replaceAfter(":","")
+        createdTime = createdTime.replace("T", "")
+        createdTime = createdTime.replace(":", "")
+
+        Log.d("cratedTimeTrim", createdTime)
+
+        var createdTimeInt = Integer.parseInt(createdTime)
+
+        var openTime = row.lottery!!.openTimeDesc?.toString()
+        openTime = openTime?.replaceAfter(":", "")
+        openTime = openTime?.replace(":", "")
+
+        var openTimeInt = Integer.parseInt(openTime.toString())
+        Log.d("openTime", openTimeInt.toString())
+
+        if (createdTimeInt < openTimeInt && currentTime > openTimeInt && row.lottery!!.id == 5){
+
+            holder.item.visibility = View.GONE
+
+        }
+
+        else if (createdTimeInt < openTimeInt && row.lottery!!.id == 6){
+
+            holder.item.visibility = View.GONE
+
+        }
+
+        else if (createdTimeInt < openTimeInt && row.lottery!!.id == 7){
+
+            holder.item.visibility = View.GONE
+
+        }
+
+        else if (createdTimeInt < openTimeInt && row.lottery!!.id == 8){
+
+            holder.item.visibility = View.GONE
+
+        }
+
+        else{
+
+            holder.item.visibility = View.VISIBLE
+        }*/
 
        /* holder.item.setOnClickListener(View.OnClickListener {
 
@@ -260,6 +335,7 @@ lateinit var activity:AppCompatActivity
             txt_ticketDate=itemView.findViewById(R.id.ticket_list_txt_date)
             cb_selectTicket=itemView.findViewById(R.id.ticket_list_img_check_box)
             item=itemView.findViewById(R.id.rv_ticket_list_parent)
+
         }
 
 

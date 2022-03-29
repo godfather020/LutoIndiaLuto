@@ -52,6 +52,7 @@ android {
     dataBinding {
         enabled = true
     }
+    buildToolsVersion '31.0.0'
 
 
 }

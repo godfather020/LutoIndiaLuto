@@ -45,8 +45,15 @@ open class Adapter_Notification() : RecyclerView.Adapter<Adapter_Notification.My
         holder.txt_header.text=list_Notification.get(position).description
 //        holder.txt_name.text=list_Notification.get(position).title
         holder.txt_name.visibility=View.GONE
-        holder.txt_date.visibility=View.GONE
+        holder.txt_date.visibility=View.VISIBLE
         holder.txt_price.visibility=View.GONE
+
+        var createdAt = list_Notification.get(position).createdAt?.replace("T"," ")
+        if (createdAt != null) {
+            createdAt = createdAt.replaceAfter(".","")
+            createdAt = createdAt.replace(".","")
+        }
+        holder.txt_date.text = createdAt
     }
 
     override fun getItemCount(): Int {

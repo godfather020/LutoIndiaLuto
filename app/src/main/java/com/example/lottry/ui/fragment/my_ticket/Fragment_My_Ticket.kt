@@ -67,6 +67,8 @@ open class Fragment_My_Ticket :Base_Fragment() {
 
             if(it!=null){
 
+
+
                 ticketListDaily=it!!.getData()!!.dailyTickets!!
                 ticketListMonthly=it!!.getData()!!.monthlyTickets!!
                 ticketListOccationally=it!!.getData()!!.occasionallyTickets!!

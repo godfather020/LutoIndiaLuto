@@ -66,7 +66,6 @@ class Trans_History_Fragment_viewModel : ViewModel() {
                     it,param)
             }!!
 
-
         call.enqueue(object : Callback<Response_Common> {
 
             @SuppressLint("LongLogTag")
