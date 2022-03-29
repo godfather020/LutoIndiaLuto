@@ -6,9 +6,18 @@
         <entry key="app/src/main/res/drawable/custom_radio.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/custom_radio0.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/custom_radio1.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio2.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio3.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio4.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio5.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio6.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio7.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio8.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_radio9.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/doted_line.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/selector_checkbox.xml" value="0.2065" />
         <entry key="app/src/main/res/layout/fragment_buy_ticket.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15260416666666668" />
         <entry key="app/src/main/res/layout/fragment_my_ticket.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/home_item_view.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.2864583333333333" />
@@ -17,6 +26,8 @@
         <entry key="app/src/main/res/layout/wallet_popup_menu.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/popup_menu_change_profile.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/ticket_list_option_menu.xml" value="0.2864583333333333" />
       </map>
     </option>
   </component>

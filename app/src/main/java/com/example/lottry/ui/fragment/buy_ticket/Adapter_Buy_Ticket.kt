@@ -24,6 +24,7 @@ open class Adapter_Buy_Ticket() : RecyclerView.Adapter<Adapter_Buy_Ticket.MyView
 
 
 lateinit var activity:AppCompatActivity
+lateinit var buyActivity: Fragment_Buy_Ticket
  var row:Row= Row()
  var  ticketList: ArrayList<Response_Ticket_List> =ArrayList()
  var  buyTicketList: ArrayList<String> =ArrayList()

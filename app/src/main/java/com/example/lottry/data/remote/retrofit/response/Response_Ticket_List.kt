@@ -11,7 +11,7 @@ open class Response_Ticket_List : Serializable {
     @SerializedName("isSelected")
      var selected:Boolean = false
 
-    constructor(id:String,selecte:Boolean){
+    constructor(id:String,selected:Boolean){
         this.id=id
         this.selected=selected
 

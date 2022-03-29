@@ -59,7 +59,7 @@
             android:id="@+id/ending_digits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ticket ending with digits"
+            android:text="Ticket ending with digit"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/_10sdp"
@@ -81,67 +81,91 @@
 
             <RadioButton
                 android:id="@+id/radio_0"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:button="null"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
                 android:background="@drawable/custom_radio0"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_1"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:button="null"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
                 android:background="@drawable/custom_radio1"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_2"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:button="null"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
+                android:background="@drawable/custom_radio2"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_3"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
+                android:background="@drawable/custom_radio3"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_4"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
+                android:background="@drawable/custom_radio4"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_5"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
+                android:background="@drawable/custom_radio5"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_6"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:background="@drawable/custom_radio6"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_7"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
+                android:background="@drawable/custom_radio7"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_8"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
+                android:background="@drawable/custom_radio8"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radio_9"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:button="@color/black"
+                android:checked="false"
+                android:background="@drawable/custom_radio9"
                 android:textStyle="bold" />
 
         </RadioGroup>
