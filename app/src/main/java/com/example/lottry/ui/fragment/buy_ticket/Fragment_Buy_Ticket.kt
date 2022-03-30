@@ -449,14 +449,17 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
         dialog.findViewById<TextView>(R.id.dialog_payment_txt_price).text=""+buyTicketList.size*row.ticketPrice!!.toInt()
         dialog.findViewById<TextView>(R.id.dialog_payment_txt_ticket_count).text=""+buyTicketList.size
         progressBar=dialog.findViewById<ProgressBar>(R.id.progess_bar)
-        val ticketprice = buyTicketList.size*row.ticketPrice!!.toInt()
 
-        if (ticketprice > sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!! && ticketprice > sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!! &&
-            ticketprice > sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!! + sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!){
+        val ticketPrice = buyTicketList.size*row.ticketPrice!!.toInt()
 
-            dialog.findViewById<CheckBox>(R.id.use_referral).isEnabled = false
-            dialog.findViewById<CheckBox>(R.id.use_referral).text = "Not Enough Balance"
+        if (sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!! == 0){
+
+            dialog.findViewById<CheckBox>(R.id.use_referral).visibility = View.GONE
+
         }
+
+
+
         /*else if (ticketprice <= sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!! + sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!){
 
             dialog.findViewById<CheckBox>(R.id.use_referral).isEnabled = true
@@ -520,14 +523,36 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
     fun buyTicket(){
         var ticketPrice=buyTicketList.size*row.ticketPrice!!.toInt();
         var  totalwalletBalance=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!!.toInt()
+        val requestBuyticket=Request_buyTicket()
 
         if (totalwalletBalance<ticketPrice){
             showDialogInsufficientFund();
             dialog.dismiss()
             return
         }
+        else {
+
+            if (dialog.findViewById<CheckBox>(R.id.use_referral).isChecked) {
+
+                if (sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!! >= ticketPrice) {
+
+
+                    requestBuyticket.walletCoins= "0"
+                    requestBuyticket.referralCoins=ticketPrice.toString()
+
+
+                }
+                else{
+
+                    val remainingAmt = ticketPrice-sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!
+
+                    requestBuyticket.walletCoins= remainingAmt.toString()
+                    requestBuyticket.referralCoins=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!.toString()
+                }
+            }
+        }
+
         progressBar.visibility=View.VISIBLE
-val requestBuyticket=Request_buyTicket()
 
         requestBuyticket.lotteryId=row.id.toString()
         requestBuyticket.ticketList=buyTicketList
@@ -609,7 +634,6 @@ val requestBuyticket=Request_buyTicket()
         response_txt.setText(type)
 
         btnOk.setOnClickListener(View.OnClickListener { view ->
-            mainActivity.backToHomeScreen()
             dialog.dismiss()
         })
         dialog.show();

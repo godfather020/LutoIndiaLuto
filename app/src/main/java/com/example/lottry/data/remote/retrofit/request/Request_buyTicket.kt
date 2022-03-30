@@ -15,6 +15,10 @@ class Request_buyTicket {
     @SerializedName("ticketPrice")
      var ticketPrice:String=""
 
+    @SerializedName("referralCoins")
+    var referralCoins:String=""
 
+    @SerializedName("walletCoins")
+    var walletCoins:String=""
 
 }
