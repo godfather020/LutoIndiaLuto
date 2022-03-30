@@ -89,6 +89,7 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
     lateinit var resultLauncherGallery: ActivityResultLauncher<Intent>
     lateinit var popup: PopupMenu
     lateinit var totalwalletBalance: TextView
+    lateinit var referralAmount: TextView
     lateinit var sharedPreferences: SharedPreferencesUtil;
     private val LOAD_GOOGLEPAY_PAYMENT_DATA_REQUEST_CODE = 991
     private val LOAD_PAYTM_PAYMENT_DATA_REQUEST_CODE = 990
@@ -123,6 +124,7 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 //        supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
         totalwalletBalance= TextView(this)
+        /*referralAmount= TextView(this)*/
         setupToolbar()
         setPopUpWindow(this)
 
@@ -516,7 +518,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
             }
         }
 
-        totalwalletBalance.text=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE).toString()+" Coins"
+        totalwalletBalance.text=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE).toString()+" Coins | "+sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT).toString()+" Coins"
+        /*referralAmount.text=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT).toString()+" Coins"*/
     }
 
 
@@ -558,7 +561,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
                    mypopupWindow.dismiss()
 
                }else{
-                   totalwalletBalance.text=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE).toString()+" Coins"
+                   totalwalletBalance.text=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE).toString()+" Coins | "+sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT).toString()+" Coins"
+                   /*referralAmount.text=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT).toString()+" Coins"*/
                    mypopupWindow.showAsDropDown(toolbar,-10,-45,Gravity.END)
                    mypopupWindow.isOutsideTouchable=true
                }
@@ -618,10 +622,13 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
         mypopupWindow = PopupWindow(view, width, height, false)
 //        mypopupWindow = PopupWindow(view)
         val walletBalance=view.findViewById<TextView>(R.id.wallet_popup_txt_price_amt)
+        /*val refferalBalance=view.findViewById<TextView>(R.id.referral_amount)*/
         val btn_addMoney=view.findViewById<TextView>(R.id.wallet_popup_txt_add_money)
         val btn_cashOut=view.findViewById<TextView>(R.id.wallet_popup_txt_cash_out)
 
+
         totalwalletBalance=walletBalance
+       /* referralAmount=refferalBalance*/
 
 
 
@@ -705,6 +712,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
     }
     public fun hide_ticket_amt(){
 
+        binding.walletBalance.visibility= View.GONE
+        binding.balanceAmount.visibility= View.GONE
         binding.dashboardTxtBuyTicketAmt.visibility=View.GONE
 
     }
@@ -728,8 +737,11 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
 
     }
     public fun show_ticket_amt(amt:Int){
+        binding.walletBalance.visibility= View.VISIBLE
+        binding.balanceAmount.visibility= View.VISIBLE
         binding.dashboardTxtBuyTicketAmt.visibility=View.VISIBLE
         binding.dashboardTxtBuyTicketAmt.text=resources.getString(R.string.total_price_)+" "+amt
+        binding.balanceAmount.text = sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE).toString()+" Coins | "+sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT).toString()+" Coins"
     }
 
     fun createImageFile(): File? {

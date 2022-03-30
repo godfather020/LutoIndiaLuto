@@ -36,14 +36,12 @@ class Fragment_Payment_Gateway_viewModel : ViewModel() {
 
     @Inject
     lateinit var  apis: Apis
-
     lateinit var activity:CustomAppActivity
     lateinit var binding: FragmentPaymentGatewaytBinding
     lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 //    val apis:Apis=RetrofitInstance().getmRetrofitInstance()!!.create(Apis::class.java)
     val commonResponse = MutableLiveData<Response_Common>()
     val commonResponse1 = MutableLiveData<Response_Common>()
-
 
     init {
 
@@ -53,11 +51,9 @@ class Fragment_Payment_Gateway_viewModel : ViewModel() {
 
 
     fun get_paytmToken(activity:CustomAppActivity,binding: FragmentPaymentGatewaytBinding,orderId:String,amt:String,callbackUrl:String):MutableLiveData<Response_Common>{
-
         this.activity=activity
         this.binding=binding
         sharedPreferencesUtil= SharedPreferencesUtil(activity)
-
 
 
         val requestPaytmchecksum=Request_paytmChecksum()
@@ -159,7 +155,7 @@ class Fragment_Payment_Gateway_viewModel : ViewModel() {
 //               TODO("Not yet implemented")
                 if(response.isSuccessful) {
                     binding.progessBar.visibility= View.GONE
-                    sharedPreferencesUtil.saveInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE,response.body()!!.getData()!!.result!!.wallet)
+                    sharedPreferencesUtil.saveInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE,response.body()!!.getData()!!.result!!.walletamount)
                     response.body()!!.message?.let { showResponseDialog(it) }
                 }else {
 
@@ -198,7 +194,7 @@ class Fragment_Payment_Gateway_viewModel : ViewModel() {
 //               TODO("Not yet implemented")
                 if(response.isSuccessful) {
                     binding.progessBar.visibility= View.GONE
-                    sharedPreferencesUtil.saveInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE,response.body()!!.getData()!!.result!!.wallet)
+                    sharedPreferencesUtil.saveInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE+Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT,response.body()!!.getData()!!.result!!.walletamount)
                     response.body()!!.message?.let { showResponseDialog(it) }
                 }else {
                     binding.progessBar.visibility= View.GONE
@@ -237,11 +233,12 @@ class Fragment_Payment_Gateway_viewModel : ViewModel() {
         response_txt.setText(type)
 
         btnOk.setOnClickListener(View.OnClickListener { view ->
-
+            activity.onBackPressed()
             dialog.dismiss()
         })
         dialog.show();
     }
+
 }
 
 

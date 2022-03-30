@@ -40,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/_25sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_layout">
@@ -58,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:orientation="vertical"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/dashboard_img_user_name"
                 app:layout_constraintStart_toEndOf="@+id/dashboard_img_user_name"
                 app:layout_constraintTop_toTopOf="@+id/dashboard_img_user_name">
@@ -86,12 +88,38 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/wallet_balance"
+            android:text="@string/your_wallet_balance"
+            android:textSize="@dimen/txt_sm"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/TextSemiBold"
+            />
+
+        <TextView
+            android:id="@+id/balance_amount"
+            style="@style/TextSemiBold"
+            android:text="500"
+            android:textSize="@dimen/txt_sm"
+            android:visibility="visible"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/wallet_balance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
+
+        <TextView
             android:id="@+id/dashboard_txt_buy_ticket_amt"
             style="@style/TextSemiBold"
             android:text="@string/total_price_"
-            android:textColor="@color/noti_date_font_color"
-            android:textSize="@dimen/txt_lg"
-            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_vlg"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

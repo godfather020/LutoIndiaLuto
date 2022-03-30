@@ -129,6 +129,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_payment_txt_price" />
 
+    <CheckBox
+        android:id="@+id/use_referral"
+        style="@style/TextHeader"
+        android:text="Use Referral Balance"
+        android:textSize="@dimen/txt_md"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_payment_txt_ticket_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent">-->

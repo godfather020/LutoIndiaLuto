@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,11 +29,13 @@ import com.example.lottry.utils.Constant
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.system.exitProcess
 
 
 open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
     var selectValue = null
+    lateinit var checkBox: CheckBox
     lateinit var notify_txt: TextView
     lateinit var wallet_txt: TextView
     lateinit var radioBtn0: RadioButton
@@ -48,8 +52,11 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
     lateinit var mainActivity:MainActivity
     lateinit var viewModel:Fragment_Buy_Ticket_viewModel
     lateinit var adapterBuyTicket: Adapter_Buy_Ticket
+    lateinit var adapterBuyTicket1: Adapter_Buy_Ticket
     lateinit var manager:RecyclerView.LayoutManager
+    lateinit var manager1:RecyclerView.LayoutManager
     var ticketList:ArrayList<Response_Ticket_List> = ArrayList()
+    var ticketListNew:ArrayList<Response_Ticket_List> = ArrayList()
     var  buyTicketList: ArrayList<String> =ArrayList()
     lateinit var  bundle: Bundle
      var row: Row=Row()
@@ -69,6 +76,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
         setHasOptionsMenu(true)
         val view: View =binding.root
         manager=LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL,false)
+        manager1=LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL,false)
         notify_txt = mainActivity.findViewById(R.id.notify_txt)
         wallet_txt = mainActivity.findViewById(R.id.wallet_txt)
         radioBtn0 = binding.radio0
@@ -194,9 +202,13 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
         super.onResume()
         //init()
     }
+
+    override fun onDetach() {
+
+        super.onDetach()
+    }
+
     fun init(){
-
-
 
       //  Log.d("chechedint", radioBtn0.isChecked.toString())
         mainActivity.setTitleName(resources.getString(R.string.buy_ticket))
@@ -214,7 +226,6 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
         }
         buyTicketList.clear()
-        ticketList.clear()
         showTotlaAmt()
 //        if(row.id!!.equals(1))
         binding.buyTicketTxtDraw.text=row.ticketType?.capitalize()+" Draw"
@@ -224,36 +235,87 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 //            binding.buyTicketTxtDraw.text=mainActivity.resources.getString(R.string.occasion_draw)
         viewModel=ViewModelProvider(requireActivity()).get(Fragment_Buy_Ticket_viewModel::class.java)
 
-
-
         viewModel.get_TicketList(mainActivity,binding).observe(mainActivity, Observer {
 
             if(it!=null){
 
-                Log.d("chechedint", radioBtn0.isChecked.toString())
+                Log.d("radiobtn0", radioBtn0.isChecked.toString())
 
                 if(it.getSuccess()==true){
                     binding.progessBar.visibility=View.GONE
                     ticketList= it.getData()!!.ticketList as ArrayList<Response_Ticket_List>
-                    Log.d("radio_3", radioBtn3.isChecked.toString())
-                    for (i in ticketList.indices){
 
-                        val ticketNo = ticketList[i].id
+                    //Log.d("radio_3", radioBtn3.isChecked.toString())
 
-                        Log.d("chechedres", radioBtn0.isChecked.toString())
+                    ticketListNew = it.getData()!!.ticketList as ArrayList<Response_Ticket_List>
 
-                        var ticketId = ticketList[i].id
-                        //ticketId.removeRange(13, 14)
-                       // Log.d("radio3", radioBtn3.isChecked.toString())
+                    if (radioBtn0.isChecked){
 
-                        when {
+
+                        for (i in ticketListNew.indices) {
+
+                            Log.d("chechedres", radioBtn0.isChecked.toString())
+
+                            var ticketId = ticketListNew[i].id
+
+                            Log.d("radio0",  ticketListNew[i].id)
+
+                            ticketId = ticketId.substring(0, 13) +"0"
+                            ticketListNew[i].id = ticketId
+
+                        }
+
+                        adapterBuyTicket=Adapter_Buy_Ticket(mainActivity,row,ticketListNew,object : Adapter_Buy_Ticket.ClickListner{
+
+                            override fun getTicketList(buyTicketList: ArrayList<String>) {
+//                            TODO("Not yet implemented")
+
+                                getBuyTicketList(buyTicketList)
+                            }
+                        })
+                        binding.buyTicketRv.adapter=adapterBuyTicket
+                        binding.buyTicketRv.layoutManager=manager
+
+
+                    }
+                    else{
+
+                        for (i in ticketList.indices){
+
+                            Log.d("before",  ticketList[i].id)
+                        }
+
+
+                        adapterBuyTicket1=Adapter_Buy_Ticket(mainActivity,row,ticketList,object : Adapter_Buy_Ticket.ClickListner{
+
+                            override fun getTicketList(buyTicketList: ArrayList<String>) {
+//                           TODO("Not yet implemented")
+
+                                getBuyTicketList(buyTicketList)
+                            }
+                        })
+
+                        for (i in ticketList.indices){
+
+                            Log.d("after",  ticketList[i].id)
+                        }
+
+                            binding.buyTicketRv.adapter=adapterBuyTicket1
+                            binding.buyTicketRv.layoutManager=manager1
+
+
+                        }
+
+                       /* when {
                             radioBtn0.isChecked -> {
 
-                                Log.d("newId0", ticketId)
+                                //Log.d("newId0", ticketId)
 
                                 ticketId = ticketId.substring(0, 13) + "0"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
+
+                                Log.d("newId0", ticketListNew[i].id)
 
                             }
                             radioBtn1.isChecked -> {
@@ -262,7 +324,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "1"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
                             radioBtn2.isChecked -> {
@@ -271,7 +333,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "2"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
                             radioBtn3.isChecked -> {
@@ -281,7 +343,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "3"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
                             radioBtn4.isChecked -> {
@@ -290,7 +352,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "4"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
                             radioBtn5.isChecked -> {
@@ -299,7 +361,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "5"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
                             radioBtn6.isChecked -> {
@@ -308,7 +370,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "6"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
 
@@ -318,7 +380,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "7"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
 
@@ -328,7 +390,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "8"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
                             radioBtn9.isChecked -> {
@@ -337,19 +399,17 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                                 ticketId = ticketId.substring(0, 13) + "9"
 
-                                ticketList[i].id = ticketId
+                                ticketListNew[i].id = ticketId
 
                             }
-                            else -> {
-                                ticketList[i].id = ticketNo
-                                Log.d("defaultTicket", ticketList[i].id)
 
-                            }
-                        }
+                        }*/
                     // Log.d("After", ticketList[i].id)
+
                     }
 
-                    adapterBuyTicket=Adapter_Buy_Ticket(mainActivity,row,ticketList,object : Adapter_Buy_Ticket.ClickListner{
+                     //Log.d("IfNoneChecked", ticketListNew.toString())
+                    /*adapterBuyTicket=Adapter_Buy_Ticket(mainActivity,row,ticketListNew,object : Adapter_Buy_Ticket.ClickListner{
 
                         override fun getTicketList(buyTicketList: ArrayList<String>) {
 //                            TODO("Not yet implemented")
@@ -358,21 +418,23 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
                         }
                     })
                     binding.buyTicketRv.adapter=adapterBuyTicket
-                    binding.buyTicketRv.layoutManager=manager
+                    binding.buyTicketRv.layoutManager=manager*/
 
-                }
             }else{
 
                 binding.progessBar.visibility=View.GONE
                 showToast(mainActivity.resources.getString(R.string.you_have_no_data))
-            }
 
+               // return@Observer
+            }
         })
 
 //        ticketList=ArrayList()
 //        ticketList.add(Response_Ticket_List(1,"0000000001","01/11/21","7:30 AM","100",false))
 //        ticketList.add(Response_Ticket_List(2,"0000000002","01/11/21","7:30 AM","100",false))
 //        ticketList.add(Response_Ticket_List(3,"0000000003","01/11/21","7:30 AM","100",false))
+
+
     }
 
 
@@ -383,11 +445,23 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
         dialog.setContentView(R.layout.dialog_payment)
         dialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-
         dialog.findViewById<TextView>(R.id.dialog_payment_txt_jackpot_amt).text=row.jackpotAmount
         dialog.findViewById<TextView>(R.id.dialog_payment_txt_price).text=""+buyTicketList.size*row.ticketPrice!!.toInt()
         dialog.findViewById<TextView>(R.id.dialog_payment_txt_ticket_count).text=""+buyTicketList.size
         progressBar=dialog.findViewById<ProgressBar>(R.id.progess_bar)
+        val ticketprice = buyTicketList.size*row.ticketPrice!!.toInt()
+
+        if (ticketprice > sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!! && ticketprice > sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!! &&
+            ticketprice > sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!! + sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!){
+
+            dialog.findViewById<CheckBox>(R.id.use_referral).isEnabled = false
+            dialog.findViewById<CheckBox>(R.id.use_referral).text = "Not Enough Balance"
+        }
+        /*else if (ticketprice <= sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!! + sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!){
+
+            dialog.findViewById<CheckBox>(R.id.use_referral).isEnabled = true
+            dialog.findViewById<CheckBox>(R.id.use_referral).text = "Use Referral Balance"
+        }*/
 
 
         dialog.findViewById<TextView>(R.id.dialog_payment_btn_pay).setOnClickListener(this)
@@ -470,8 +544,7 @@ val requestBuyticket=Request_buyTicket()
                 showResponseDialog(requireContext().getString(R.string.buy_ticket_success))
                 //Toast.makeText(context, requireContext().getString(R.string.buy_ticket_success) ,Toast.LENGTH_LONG).show()
                 Handler(Looper.myLooper()!!).postDelayed({
-                    //mainActivity.backToHomeScreen();
-                    mainActivity.onBackPressed()
+                    mainActivity.backToHomeScreen();
                 },2000)
 
               //  init()
@@ -536,11 +609,11 @@ val requestBuyticket=Request_buyTicket()
         response_txt.setText(type)
 
         btnOk.setOnClickListener(View.OnClickListener { view ->
-
+            mainActivity.backToHomeScreen()
             dialog.dismiss()
         })
         dialog.show();
     }
-
 }
+
 

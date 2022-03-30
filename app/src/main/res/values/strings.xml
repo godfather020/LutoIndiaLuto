@@ -31,7 +31,7 @@
     <string name="open_Drawer">Open Drawer</string>
     <string name="close_Drawer">Close Drawer</string>
     <string name="lets_start_your_journey">Let\'s start your journey</string>
-    <string name="total_price_">Total Coins :</string>
+    <string name="total_price_">Total Required Coins :</string>
     <string name="top_winners">Top Winners</string>
     <string name="latest_draw">Daily Draw</string>
     <string name="monthly_draw">Monthly Draw</string>
@@ -44,7 +44,7 @@
     <string name="purchase">Purchase</string>
     <string name="ticket_price">Required Coins</string>
     <string name="buy_now">Buy Now</string>
-    <string name="your_wallet_balance">Your Wallet Balance</string>
+    <string name="your_wallet_balance">Wallet Balance | Referral Balance</string>
     <string name="you_have_no_data">You have no data.</string>
     <string name="please_registered_your_number.">Please registered your number.</string>
     <string name="invalid_phone_number">Invalid phone number</string>

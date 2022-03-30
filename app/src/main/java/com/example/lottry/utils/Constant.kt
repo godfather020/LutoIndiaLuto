@@ -68,6 +68,7 @@ class Constant {
 
         internal const val X_TOKEN="x-token"
         internal const val WALLET_BALANCE="wallet-balance"
+        internal const val REFFERAL_AMOUNT="referral-balance"
         internal const val LOGIN="login"
         internal const val FIRST_TIME="first_time"
 

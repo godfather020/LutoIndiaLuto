@@ -38,9 +38,6 @@ class Fragment_Home_viewModel : ViewModel() {
 
     @Inject
     lateinit var  apis: Apis
-
-
-
     lateinit var activity:CustomAppActivity
     lateinit var binding: FragmentHomeBinding
     lateinit var sharedPreferencesUtil: SharedPreferencesUtil
@@ -193,7 +190,8 @@ class Fragment_Home_viewModel : ViewModel() {
 //               TODO("Not yet implemented")
                if(response.isSuccessful) {
                    binding.progessBar.visibility= View.GONE
-                   sharedPreferencesUtil.saveInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE,response.body()!!.getData()!!.result!!.wallet)
+                   sharedPreferencesUtil.saveInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE,response.body()!!.getData()!!.result!!.walletamount)
+                   sharedPreferencesUtil.saveInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT,response.body()!!.getData()!!.result!!.refferalamount)
 
                }else {
 

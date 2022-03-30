@@ -638,9 +638,10 @@ class Fragment_Payment_Gateway : Base_Fragment(), View.OnClickListener {
     fun deductWalletBalance(amt: String,number:String,type:String){
 
         var  totalwalletBalance=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!!.toInt()
-
         if (totalwalletBalance<amt.toInt()){
-            Toast.makeText(context,resources.getString(R.string.insufficient_fund_with), Toast.LENGTH_LONG).show()
+
+            showResponseDialog(resources.getString(R.string.insufficient_fund_with))
+            //Toast.makeText(context,resources.getString(R.string.insufficient_fund_with), Toast.LENGTH_LONG).show()
             return
         }
         viewModel.deduct_walletBalance(activit,binding,amt,number,type)

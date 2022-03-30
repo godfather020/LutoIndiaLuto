@@ -25,4 +25,11 @@ class Result {
     @Expose
     var wallet: Int = 0
 
+    @SerializedName("refferalamount")
+    @Expose
+    var refferalamount: Int = 0
+
+    @SerializedName("walletamount")
+    @Expose
+    var walletamount: Int = 0
 }

@@ -45,7 +45,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/gL_horizontal_bottom"
             app:layout_constraintStart_toStartOf="@+id/gL_vertical_start"
@@ -53,11 +53,13 @@
 
             <TextView
                 android:id="@+id/wallet_popup_txt_price_amt_heading"
-                style="@style/TextSubHeader"
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:text="@string/your_wallet_balance"
                 android:textColor="@color/white"
-                android:textSize="@dimen/txt_vsm"
+                android:textSize="9dp"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -76,39 +78,51 @@
             <TextView
                 android:id="@+id/wallet_popup_txt_price_amt"
                 style="@style/TextHeader"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="4dp"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/txt_lg"
-
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/wallet_popup_img_price_amt"
                 app:layout_constraintTop_toBottomOf="@+id/wallet_popup_txt_price_amt_heading" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/wallet_popup_txt_add_money"
             style="@style/TextSubHeader"
             android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/load_money"
+            android:drawablePadding="5dp"
             android:text="@string/load_money"
             android:textColor="@color/purple_500"
             android:textSize="@dimen/txt_sm"
-            android:drawablePadding="5dp"
-            android:drawableLeft="@drawable/load_money"
             app:layout_constraintStart_toStartOf="@+id/gL_vertical_start"
             app:layout_constraintTop_toTopOf="@+id/gL_horizontal_bottom" />
 
         <TextView
             android:id="@+id/wallet_popup_txt_cash_out"
             style="@style/TextSubHeader"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/cash_out"
+            android:drawablePadding="5dp"
             android:text="@string/cash_out"
             android:textColor="@color/purple_500"
             android:textSize="@dimen/txt_sm"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="5dp"
-            android:drawableLeft="@drawable/cash_out"
             app:layout_constraintStart_toStartOf="@+id/wallet_popup_txt_add_money"
             app:layout_constraintTop_toBottomOf="@+id/wallet_popup_txt_add_money" />
 
+        <TextView
+            style="@style/TextHeader"
+            android:layout_marginTop="4dp"
+            android:text="Referral Coins cannot be Withdraw"
+
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="@dimen/txt_vvsm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wallet_popup_txt_cash_out" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
