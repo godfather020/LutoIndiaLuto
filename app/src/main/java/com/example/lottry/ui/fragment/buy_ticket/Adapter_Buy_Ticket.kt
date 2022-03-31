@@ -1,20 +1,16 @@
 package com.example.lottry.ui.fragment.buy_ticket
 
-import android.app.Activity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.CompoundButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lottry.BR
 import com.example.lottry.R
 import com.example.lottry.data.remote.retrofit.response.Response_Ticket_List
 import com.example.lottry.data.remote.retrofit.response.Row
@@ -59,6 +55,9 @@ lateinit var buyActivity: Fragment_Buy_Ticket
 
 //        holder.binding.setVariable(BR.ticket,ticketList[position])
 //        holder.binding.executePendingBindings()
+
+        //ticketList.removeAt(position)
+
 
         val selectedTicket: Response_Ticket_List=ticketList.get(position)
 
@@ -341,5 +340,10 @@ lateinit var buyActivity: Fragment_Buy_Ticket
 
         public fun getTicketList(buyTicketList : ArrayList<String>)
 
+    }
+
+    open fun refreshMessages(messages: List<Response_Ticket_List?>) {
+        this.ticketList = messages as ArrayList<Response_Ticket_List>
+        notifyItemRangeChanged(0, ticketList.size)
     }
 }

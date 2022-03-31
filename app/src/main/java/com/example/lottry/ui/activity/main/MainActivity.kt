@@ -186,6 +186,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
 
         sharedPreferences=SharedPreferencesUtil(this)
         binding.dashboardTxtUserName.text="Hi, "+sharedPreferences.getUserData()!!.userName
+        binding.referralCode.text="Referral Code: "+sharedPreferences.getUserData()!!.refferalcode
+        Log.d("referral_code", sharedPreferences.getUserData()!!.refferalcode)
         binding.SlidingUpPanel.isTouchEnabled = false
         binding.SlidingUpPanel.panelState = SlidingUpPanelLayout.PanelState.HIDDEN
         loadFragment(

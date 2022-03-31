@@ -13,6 +13,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lottry.BR
 import com.example.lottry.R
+import com.example.lottry.data.remote.retrofit.response.FakeUser
 import com.example.lottry.data.remote.retrofit.response.Response_Ticket_List
 import com.example.lottry.data.remote.retrofit.response.Row
 import com.example.lottry.data.remote.retrofit.response.Winners
@@ -69,14 +70,23 @@ lateinit var activity:AppCompatActivity
         }
         else{
 
-            val rnds1 = (6..9).random()
-            val rnds2 = (6..9).random()
-            val rnds3 = (0..9).random()
-            val rnds4 = (0..9).random()
+           // val rnds1 = (6..9).random()
+            //val rnds2 = (6..9).random()
+           // val rnds3 = (0..9).random()
+            //val rnds4 = (0..9).random()
 
-            val user = winners.rows!!.get(position).fakeUser
+            val fakeuser = winners.rows!!.get(position).fakeUser
 
-            holder.txt_userName.text=rnds1.toString()+rnds2.toString()+"xxxxxx"+rnds3.toString()+rnds4.toString()
+            var fakePhone = fakeuser!!.phoneNumber
+            var fakePhonelast = fakePhone?.get(9)
+            var fakePhonelast2 = fakePhone?.get(8)
+            fakePhone = fakePhone!!.replaceAfter(fakePhone?.get(1), "xxxxxx")
+
+            fakePhone = fakePhone+fakePhonelast2+fakePhonelast
+
+            Log.d("fakePhone", fakePhone)
+
+            holder.txt_userName.text=fakePhone.toString()
         }
 
     }

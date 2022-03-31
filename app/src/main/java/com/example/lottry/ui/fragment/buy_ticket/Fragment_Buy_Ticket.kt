@@ -48,6 +48,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
     lateinit var radioBtn7: RadioButton
     lateinit var radioBtn8: RadioButton
     lateinit var radioBtn9: RadioButton
+    lateinit var radioBtnReset: RadioButton
     lateinit var binding :FragmentBuyTicketBinding
     lateinit var mainActivity:MainActivity
     lateinit var viewModel:Fragment_Buy_Ticket_viewModel
@@ -89,6 +90,7 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
         radioBtn7 = binding.radio7
         radioBtn8 = binding.radio8
         radioBtn9 = binding.radio9
+        radioBtnReset = binding.reset
 
         radioBtn0.isChecked = false
         radioBtn1.isChecked = false
@@ -100,8 +102,17 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
         radioBtn7.isChecked = false
         radioBtn8.isChecked = false
         radioBtn9.isChecked = false
+        radioBtnReset.isChecked = true
+
 
         Log.d("cheched", radioBtn0.isChecked.toString())
+
+        radioBtnReset.setOnClickListener {
+
+            radioBtnReset.isChecked = true
+            init()
+        }
+
 
         radioBtn0.setOnClickListener{
 
@@ -173,9 +184,10 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
         }
 
         init()
-
+        radioBtnReset.isChecked = true
         return view
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -200,13 +212,10 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
     override fun onResume() {
         mainActivity.setTitleName(resources.getString(R.string.buy_ticket))
         super.onResume()
+
         //init()
     }
 
-    override fun onDetach() {
-
-        super.onDetach()
-    }
 
     fun init(){
 
@@ -237,19 +246,26 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
         viewModel.get_TicketList(mainActivity,binding).observe(mainActivity, Observer {
 
-            if(it!=null){
+            if (it != null) {
 
                 Log.d("radiobtn0", radioBtn0.isChecked.toString())
 
-                if(it.getSuccess()==true){
-                    binding.progessBar.visibility=View.GONE
-                    ticketList= it.getData()!!.ticketList as ArrayList<Response_Ticket_List>
+                if (it.getSuccess() == true) {
+                    binding.progessBar.visibility = View.GONE
+                    ticketList = it.getData()!!.ticketList as ArrayList<Response_Ticket_List>
 
                     //Log.d("radio_3", radioBtn3.isChecked.toString())
 
                     ticketListNew = it.getData()!!.ticketList as ArrayList<Response_Ticket_List>
 
-                    if (radioBtn0.isChecked){
+                    //var i = 0
+                    for (i in ticketListNew.indices) {
+
+                        // Log.d("chechedres", radioBtn0.isChecked.toString())
+
+                        var ticketId = ticketListNew[i].id
+
+                        /*if (radioBtn0.isChecked){
 
 
                         for (i in ticketListNew.indices) {
@@ -277,8 +293,8 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
                         binding.buyTicketRv.layoutManager=manager
 
 
-                    }
-                    else{
+                    }*/
+                        /*else{
 
                         for (i in ticketList.indices){
 
@@ -304,9 +320,75 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
                             binding.buyTicketRv.layoutManager=manager1
 
 
-                        }
+                        }*/
 
-                       /* when {
+                        /*if (radioBtn0.isChecked){
+
+                            ticketId = ticketId.substring(0, 13) + "0"
+
+                            ticketListNew[i].id = ticketId
+
+                            Log.d("newId0", ticketListNew[i].id)
+
+                            adapterBuyTicket = Adapter_Buy_Ticket(
+                                mainActivity,
+                                row,
+                                ticketListNew,
+                                object : Adapter_Buy_Ticket.ClickListner {
+
+                                    override fun getTicketList(buyTicketList: ArrayList<String>) {
+//                            TODO("Not yet implemented")
+
+                                        getBuyTicketList(buyTicketList)
+                                    }
+                                })
+                            binding.buyTicketRv.adapter = adapterBuyTicket
+                            binding.buyTicketRv.layoutManager = manager
+
+                        }*/
+
+                        /*else {
+                            adapterBuyTicket = Adapter_Buy_Ticket(
+                                mainActivity,
+                                row,
+                                ticketList,
+                                object : Adapter_Buy_Ticket.ClickListner {
+
+                                    override fun getTicketList(buyTicketList: ArrayList<String>) {
+//                            TODO("Not yet implemented")
+
+                                        getBuyTicketList(buyTicketList)
+                                    }
+                                })
+                            binding.buyTicketRv.adapter = adapterBuyTicket
+                            binding.buyTicketRv.layoutManager = manager
+                        }*/
+
+                        when {
+
+                            radioBtnReset.isChecked -> {
+
+                                val randNum = (0..9).random()
+                                ticketId = ticketId.substring(0,13) + randNum
+                                ticketListNew[i].id = ticketId
+
+                                /*adapterBuyTicket = Adapter_Buy_Ticket(
+                                    mainActivity,
+                                    row,
+                                    ticketListNew,
+                                    object : Adapter_Buy_Ticket.ClickListner {
+
+                                        override fun getTicketList(buyTicketList: ArrayList<String>) {
+//                            TODO("Not yet implemented")
+
+                                            getBuyTicketList(buyTicketList)
+                                        }
+                                    })
+                                binding.buyTicketRv.adapter = adapterBuyTicket
+                                binding.buyTicketRv.layoutManager = manager*/
+
+                            }
+
                             radioBtn0.isChecked -> {
 
                                 //Log.d("newId0", ticketId)
@@ -403,31 +485,41 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
                             }
 
-                        }*/
-                    // Log.d("After", ticketList[i].id)
+                        }
 
+                        //i++
                     }
 
-                     //Log.d("IfNoneChecked", ticketListNew.toString())
-                    /*adapterBuyTicket=Adapter_Buy_Ticket(mainActivity,row,ticketListNew,object : Adapter_Buy_Ticket.ClickListner{
 
-                        override fun getTicketList(buyTicketList: ArrayList<String>) {
+                    // Log.d("After", ticketList[i].id)
+
+
+                    //Log.d("IfNoneChecked", ticketListNew.toString())
+                    adapterBuyTicket = Adapter_Buy_Ticket(
+                        mainActivity,
+                        row,
+                        ticketListNew,
+                        object : Adapter_Buy_Ticket.ClickListner {
+
+                            override fun getTicketList(buyTicketList: ArrayList<String>) {
 //                            TODO("Not yet implemented")
 
-                            getBuyTicketList(buyTicketList)
-                        }
-                    })
-                    binding.buyTicketRv.adapter=adapterBuyTicket
-                    binding.buyTicketRv.layoutManager=manager*/
+                                getBuyTicketList(buyTicketList)
+                            }
+                        })
+                    binding.buyTicketRv.adapter = adapterBuyTicket
+                    binding.buyTicketRv.layoutManager = manager
 
-            }else{
+                } else {
 
-                binding.progessBar.visibility=View.GONE
-                showToast(mainActivity.resources.getString(R.string.you_have_no_data))
+                    binding.progessBar.visibility = View.GONE
+                    showToast(mainActivity.resources.getString(R.string.you_have_no_data))
 
-               // return@Observer
+                    // return@Observer
+                }
             }
         })
+
 
 //        ticketList=ArrayList()
 //        ticketList.add(Response_Ticket_List(1,"0000000001","01/11/21","7:30 AM","100",false))
@@ -436,6 +528,8 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
 
     }
+
+
 
 
     open fun showDialog() {
@@ -521,11 +615,17 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
 
 
     fun buyTicket(){
+
         var ticketPrice=buyTicketList.size*row.ticketPrice!!.toInt();
-        var  totalwalletBalance=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!!.toInt()
+        var  totalwalletBalance=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!!.toInt()+sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!
         val requestBuyticket=Request_buyTicket()
 
         if (totalwalletBalance<ticketPrice){
+            showDialogInsufficientFund();
+            dialog.dismiss()
+            return
+        }
+        else if(!dialog.findViewById<CheckBox>(R.id.use_referral).isChecked && sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE)!! < ticketPrice){
             showDialogInsufficientFund();
             dialog.dismiss()
             return
@@ -540,15 +640,27 @@ open class Fragment_Buy_Ticket :Base_Fragment() ,View.OnClickListener{
                     requestBuyticket.walletCoins= "0"
                     requestBuyticket.referralCoins=ticketPrice.toString()
 
-
+                    Log.d("referralCoins", ticketPrice.toString())
                 }
                 else{
 
                     val remainingAmt = ticketPrice-sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!
 
+                    Log.d("remaing", remainingAmt.toString())
+
                     requestBuyticket.walletCoins= remainingAmt.toString()
                     requestBuyticket.referralCoins=sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!.toString()
+
+                    Log.d("wallet", remainingAmt.toString())
+                    Log.d("referralCoins", sharedPreferences.getInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT)!!.toString())
+
                 }
+            }
+            else {
+
+                requestBuyticket.walletCoins = ticketPrice.toString()
+                Log.d("walletelse", ticketPrice.toString())
+                requestBuyticket.referralCoins = "0"
             }
         }
 

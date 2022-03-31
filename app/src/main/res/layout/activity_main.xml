@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginTop="@dimen/_25sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_layout">
@@ -84,6 +84,14 @@
                     app:layout_constraintStart_toStartOf="@+id/dashboard_user_name"
                     app:layout_constraintTop_toBottomOf="@+id/dashboard_user_name" />
 
+                <TextView
+                    android:id="@+id/referral_code"
+                    style="@style/TextSubHeader"
+                    android:text="asd"
+                    android:textColor="@color/grey"
+                    app:layout_constraintStart_toStartOf="@+id/dashboard_user_name"
+                    />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -93,7 +101,7 @@
             android:textSize="@dimen/txt_sm"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/_8sdp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -105,12 +113,12 @@
             style="@style/TextSemiBold"
             android:text="500"
             android:textSize="@dimen/txt_sm"
-            android:visibility="visible"
+            android:visibility="gone"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/wallet_balance"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             />
 
         <TextView
@@ -119,11 +127,12 @@
             android:text="@string/total_price_"
             android:textColor="@color/white"
             android:textSize="@dimen/txt_vlg"
-            android:visibility="visible"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/balance_amount" />
 
         <!-- <de.hdodenhof.circleimageview.CircleImageView
              android:id="@+id/dashboard_img_user_name"

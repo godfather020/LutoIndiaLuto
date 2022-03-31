@@ -13,6 +13,10 @@ class UserDetail {
     @Expose
     var userName: String = ""
 
+    @SerializedName("refferalcode")
+    @Expose
+    var refferalcode: String = ""
+
     @SerializedName("phoneNumber")
     @Expose
     var phoneNumber: String = ""

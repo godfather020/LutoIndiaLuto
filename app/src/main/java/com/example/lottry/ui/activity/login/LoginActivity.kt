@@ -1,11 +1,17 @@
 package com.example.lottry.ui.activity.login
 
 import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Telephony
+import android.telephony.SmsMessage
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -51,16 +57,16 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
     lateinit var binding:ActivityLoginBinding
     lateinit var phoneNumber:String
     val permission = ArrayList<String>()
-
+    var otpReceiver: OTPReceiver?= null
 
     lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
 //      init();
         if (check_Permission()) {
+
             init()
         } else {
             requestPermission()
@@ -76,6 +82,8 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
         binding=DataBindingUtil.setContentView(this@LoginActivity,R.layout.activity_login)
         viewModel=ViewModelProvider(this@LoginActivity)[LoginViewModel::class.java]
 
+        receiveSms()
+        otpReceiver?.setEditTextOtp(binding.otpView)
 
         binding.loginEdtMobileNo.afterTextChanged {
 
@@ -117,6 +125,7 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
                             userDetail.id= it.getData()!!.result!!.id.toInt()
                             userDetail.userName= it.getData()!!.result!!.userName
                             userDetail.phoneNumber= it.getData()!!.result!!.phoneNumber
+                            userDetail.refferalcode= it.getData()!!.result!!.refferalcode
                             if(it.getData()!!.result!!.profilePic!=null) {
                                 userDetail.profilePic = it.getData()!!.result!!.profilePic
                             }
@@ -143,6 +152,23 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
         })
     }
 
+    private fun receiveSms() {
+        var br = object : BroadcastReceiver(){
+            override fun onReceive(context: Context?, intent: Intent?) {
+
+                for (sms : SmsMessage in Telephony.Sms.Intents.getMessagesFromIntent(intent)){
+                    Toast.makeText(applicationContext,sms.displayMessageBody, Toast.LENGTH_LONG).show()
+                    val smsBody = sms.messageBody
+                    Log.d("msgBody", smsBody)
+                    val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
+                    Log.d("otp", getOtp)
+                    setOtp(getOtp)
+                }
+            }
+        }
+        registerReceiver(br, IntentFilter("android.provider.Telephony.SMS_RECEIVED"))
+    }
+
     override fun onResume() {
         super.onResume()
         init()
@@ -165,8 +191,8 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
 
             if(it!=null){
 
-
-                setOtp(it.getData()!!.otp)
+                Log.d("responseOtp", it.getData()!!.otp)
+                //setOtp(it.getData()!!.otp)
 
             }else
                 showToast(resources.getString(R.string.you_have_no_data))
@@ -191,7 +217,8 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
             binding.progessBar.visibility= View.GONE
             showToast(resources.getString(R.string.please_enter_otp))
             return false
-        }else {
+        }
+        else {
 
             return true
         }
@@ -209,6 +236,7 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
             ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         val contact = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
         val phone = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+        val recieveSms = ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS)
         if (camera != PackageManager.PERMISSION_GRANTED) {
             permission.add(Manifest.permission.CAMERA)
         }
@@ -226,6 +254,9 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
         }
         if (phone != PackageManager.PERMISSION_GRANTED) {
             permission.add(Manifest.permission.READ_PHONE_STATE)
+        }
+        if (recieveSms != PackageManager.PERMISSION_GRANTED){
+            permission.add(Manifest.permission.RECEIVE_SMS)
         }
         return if (!permission.isEmpty()) {
             false

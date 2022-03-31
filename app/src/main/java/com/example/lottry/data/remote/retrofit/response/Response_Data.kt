@@ -31,6 +31,10 @@ class Response_Data {
     @Expose
     var phoneNumber: String = ""
 
+    @SerializedName("refferalcode")
+    @Expose
+    var refferalcode: String = ""
+
     @SerializedName("lotteries")
     @Expose
     var lotteries: Lotteries? = null
