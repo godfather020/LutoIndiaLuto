@@ -4,9 +4,13 @@
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/bae7c576456912c92c87268c456e747f/transformed/jetified-play-services-maps-18.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/bae7c576456912c92c87268c456e747f/transformed/jetified-play-services-maps-18.0.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/bae7c576456912c92c87268c456e747f/transformed/jetified-play-services-maps-18.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/60a01afd08d2e056752a5e1f8af8ef16/transformed/jetified-play-services-maps-18.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/60a01afd08d2e056752a5e1f8af8ef16/transformed/jetified-play-services-maps-18.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/60a01afd08d2e056752a5e1f8af8ef16/transformed/jetified-play-services-maps-18.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-maps/18.0.1/b21c7a3eb0f99d941e7d6a1f7ec27846c3b74ae/play-services-maps-18.0.1-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-maps/18.0.1/b21c7a3eb0f99d941e7d6a1f7ec27846c3b74ae/play-services-maps-18.0.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

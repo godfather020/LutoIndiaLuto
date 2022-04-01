@@ -1,81 +1,56 @@
 package com.example.lottry.ui.activity.main
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.PendingIntent.getActivity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.res.ColorStateList
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
-import android.widget.PopupWindow
-import android.widget.TextView
-import android.widget.ToggleButton
+import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.graphics.drawable.DrawerArrowDrawable
+import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
-import androidx.slidingpanelayout.widget.SlidingPaneLayout
+import androidx.lifecycle.ViewModelProvider
 import com.example.lottry.R
 import com.example.lottry.databinding.ActivityMainBinding
-import com.example.lottry.ui.fragment.buy_ticket.Fragment_Buy_Ticket
+import com.example.lottry.ui.activity.help.Fragment_help
 import com.example.lottry.ui.fragment.home.Fragment_Home
 import com.example.lottry.ui.fragment.my_ticket.Fragment_My_Ticket
 import com.example.lottry.ui.fragment.notification.Fragment_Notification
-import com.google.android.material.navigation.NavigationView
-import com.softs.meetupfellow.components.activity.CustomAppActivity
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
-import android.view.LayoutInflater
-import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.appcompat.widget.PopupMenu
-import com.example.lottry.dragger.AppComponent
-import com.softs.meetupfellow.components.activity.CustomAppActivityCompatViewImpl
-import com.softs.meetupfellow.components.activity.CustomAppActivityImpl
-import de.hdodenhof.circleimageview.CircleImageView
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.util.*
-import androidx.core.app.ActivityCompat
-
-import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
-
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
-import com.example.lottry.ui.activity.help.Fragment_help
 import com.example.lottry.ui.fragment.payment_gateway.Fragment_Payment_Gateway
 import com.example.lottry.ui.fragment.tran_history.Tran_History_Fragment
 import com.example.lottry.utils.Constant
-
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
-import com.google.android.gms.wallet.*
-
-import org.json.JSONObject
+import com.google.android.gms.wallet.PaymentData
+import com.google.android.material.navigation.NavigationView
+import com.softs.meetupfellow.components.activity.CustomAppActivityCompatViewImpl
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
+import de.hdodenhof.circleimageview.CircleImageView
 import org.json.JSONException
+import org.json.JSONObject
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : CustomAppActivityCompatViewImpl() {
@@ -97,6 +72,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
     lateinit var UserName:TextView
     lateinit var PhoneNo:TextView
     lateinit var UserImg:CircleImageView
+    lateinit var copy_clip: ImageButton
+    lateinit var share_btn: ImageButton
 
     lateinit var viewModel: MainViewModel
     private val CAMERA_REQUEST_CODE=90
@@ -129,6 +106,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
         setPopUpWindow(this)
 
         init()
+
+
 
     }
 
@@ -183,10 +162,10 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
             )
         }
 
-
         sharedPreferences=SharedPreferencesUtil(this)
         binding.dashboardTxtUserName.text="Hi, "+sharedPreferences.getUserData()!!.userName
         binding.referralCode.text="Referral Code: "+sharedPreferences.getUserData()!!.refferalcode
+        val referralCode = sharedPreferences.getUserData()!!.refferalcode
         Log.d("referral_code", sharedPreferences.getUserData()!!.refferalcode)
         binding.SlidingUpPanel.isTouchEnabled = false
         binding.SlidingUpPanel.panelState = SlidingUpPanelLayout.PanelState.HIDDEN
@@ -209,6 +188,28 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
             "HOME",
             null
         )
+
+        copy_clip = findViewById(R.id.copy_to_clip)
+        share_btn = findViewById(R.id.share_app)
+
+
+        share_btn.setOnClickListener {
+
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check Out this awesome App : https://www.impetrosys.com/    Referral Code : "+ referralCode)
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "LutoIndiaLuto")
+            startActivity(Intent.createChooser(shareIntent, "Share via"))
+        }
+
+        copy_clip.setOnClickListener {
+
+            Toast.makeText(applicationContext, "Referral code copied", Toast.LENGTH_LONG).show()
+
+            setClipboard(this, "Referral Code : "+referralCode)
+        }
+
 
         UserImg=binding.nav.getHeaderView(0).findViewById<CircleImageView>(R.id.nav_header_img_user_name)
         UserName=binding.nav.getHeaderView(0).findViewById<TextView>(R.id.nav_header_txt_user_name)
@@ -951,7 +952,11 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
                  Log.d("bitmap", imgBase64)*/
             }
 
-
+    private fun setClipboard(context: Context, text: String) {
+        val clipboard = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Copied Text", text)
+        clipboard.setPrimaryClip(clip)
+    }
 
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

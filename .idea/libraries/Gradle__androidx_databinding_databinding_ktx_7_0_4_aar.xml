@@ -5,10 +5,14 @@
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/57cba51a94b6fb68774611af73c87484/transformed/jetified-databinding-ktx-7.0.4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/57cba51a94b6fb68774611af73c87484/transformed/jetified-databinding-ktx-7.0.4/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/57cba51a94b6fb68774611af73c87484/transformed/jetified-databinding-ktx-7.0.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a06f8b553bcd453a167fa9249a5126a6/transformed/jetified-databinding-ktx-7.0.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a06f8b553bcd453a167fa9249a5126a6/transformed/jetified-databinding-ktx-7.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a06f8b553bcd453a167fa9249a5126a6/transformed/jetified-databinding-ktx-7.0.4/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.databinding/databinding-ktx/7.0.4/7dbe2fa9a534d08575863c6ac2f3a34055619750/databinding-ktx-7.0.4-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.databinding/databinding-ktx/7.0.4/7dbe2fa9a534d08575863c6ac2f3a34055619750/databinding-ktx-7.0.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

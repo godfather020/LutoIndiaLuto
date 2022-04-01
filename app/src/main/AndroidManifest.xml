@@ -105,15 +105,6 @@
             </intent-filter>
         </service>
 
-        <receiver android:enabled="true" android:name=".ui.activity.login.OTPReceiver"
-            android:exported="false"
-            android:permission="android.permission.BROADCAST_SMS">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-            </intent-filter>
-
-        </receiver>
-
     </application>
 
 </manifest>

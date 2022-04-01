@@ -2,53 +2,29 @@ package com.example.lottry.ui.activity.login
 
 import android.Manifest
 import android.content.BroadcastReceiver
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.provider.Telephony
 import android.telephony.SmsMessage
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.lottry.R
-import com.example.lottry.application.WikiApplication
-import com.example.lottry.data.remote.retrofit.api.Apis
-import com.example.lottry.data.remote.retrofit.request.Request_Login
-import com.example.lottry.data.remote.retrofit.response.Response_Common
 import com.example.lottry.data.remote.retrofit.response.UserDetail
 import com.example.lottry.databinding.ActivityLoginBinding
-import com.example.lottry.databinding.ActivityMainBinding
-import com.example.lottry.development.ui.OTPListener
-import com.example.lottry.development.ui.OtpTextView
-import com.example.lottry.ui.activity.main.MainActivity
-import com.example.lottry.ui.activity.registration.RegistrationActivity
 import com.example.lottry.utils.Constant
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
-import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtilInterface
-import com.google.gson.Gson
-import com.softs.meetupfellow.components.activity.CustomAppActivity
 import com.softs.meetupfellow.components.activity.CustomAppActivityCompatViewImpl
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.ArrayList
-import javax.inject.Inject
+import java.util.regex.Pattern
 
 class LoginActivity : CustomAppActivityCompatViewImpl() {
 
@@ -57,7 +33,6 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
     lateinit var binding:ActivityLoginBinding
     lateinit var phoneNumber:String
     val permission = ArrayList<String>()
-    var otpReceiver: OTPReceiver?= null
 
     lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
@@ -83,7 +58,6 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
         viewModel=ViewModelProvider(this@LoginActivity)[LoginViewModel::class.java]
 
         receiveSms()
-        otpReceiver?.setEditTextOtp(binding.otpView)
 
         binding.loginEdtMobileNo.afterTextChanged {
 
@@ -153,20 +127,31 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
     }
 
     private fun receiveSms() {
-        var br = object : BroadcastReceiver(){
+        val br = object : BroadcastReceiver(){
             override fun onReceive(context: Context?, intent: Intent?) {
 
                 for (sms : SmsMessage in Telephony.Sms.Intents.getMessagesFromIntent(intent)){
-                    Toast.makeText(applicationContext,sms.displayMessageBody, Toast.LENGTH_LONG).show()
+                    //Toast.makeText(applicationContext,sms.displayMessageBody, Toast.LENGTH_LONG).show()
                     val smsBody = sms.messageBody
                     Log.d("msgBody", smsBody)
-                    val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
-                    Log.d("otp", getOtp)
-                    setOtp(getOtp)
+                    getOtpFromMessage(smsBody)
+                    //val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
+                    //Log.d("otp", getOtp)
+                    //setOtp(getOtp)
                 }
             }
         }
         registerReceiver(br, IntentFilter("android.provider.Telephony.SMS_RECEIVED"))
+    }
+
+    private fun getOtpFromMessage(message: String) {
+        // This will match any 6 digit number in the message
+        val pattern = Pattern.compile("(|^)\\d{4}")
+        val matcher = pattern.matcher(message)
+        if (matcher.find()) {
+            Log.d("Otp", matcher.group(0))
+            setOtp(matcher.group(0).toString())
+        }
     }
 
     override fun onResume() {
@@ -191,7 +176,8 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
 
             if(it!=null){
 
-                Log.d("responseOtp", it.getData()!!.otp)
+                Toast.makeText(applicationContext, "Otp sent to your number.", Toast.LENGTH_LONG).show()
+                //Log.d("responseOtp", it.getData()!!.otp)
                 //setOtp(it.getData()!!.otp)
 
             }else
