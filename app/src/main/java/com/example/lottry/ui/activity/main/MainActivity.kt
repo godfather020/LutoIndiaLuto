@@ -198,9 +198,9 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
             val shareIntent = Intent()
             shareIntent.action = Intent.ACTION_SEND
             shareIntent.type = "text/plain"
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check Out this awesome App : https://www.impetrosys.com/    Referral Code : "+ referralCode)
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check Out this awesome App : https://www.impetrosys.com/    \nReferral Code : "+ referralCode)
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, "LutoIndiaLuto")
-            startActivity(Intent.createChooser(shareIntent, "Share via"))
+            startActivity(Intent.createChooser(shareIntent, "Share App via"))
         }
 
         copy_clip.setOnClickListener {
@@ -209,7 +209,6 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
 
             setClipboard(this, "Referral Code : "+referralCode)
         }
-
 
         UserImg=binding.nav.getHeaderView(0).findViewById<CircleImageView>(R.id.nav_header_img_user_name)
         UserName=binding.nav.getHeaderView(0).findViewById<TextView>(R.id.nav_header_txt_user_name)
@@ -438,51 +437,51 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
             StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-//                popup.dismiss()
-//
-//                var bitmap: Bitmap? = null
-//                var uri: Uri? = null
-//                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
-//
-//
-//                    setImage(
-//                        result.data!!.data.toString(),
-//                        binding.nav.get(0).findViewById(R.id.nav_header_img_user_name),
-//                        resources.getDrawable(R.drawable.ic_launcher_background)
-//                    )
-//                    try {
-//                        bitmap = MediaStore.Images.Media.getBitmap(
-//                            this.getContentResolver(), result.data!!
-//                                .data
-//                        )
-//                    } catch (e: IOException) {
-//                        e.printStackTrace()
-//                    }
-//                } else {
-//                    val bundle = result.data!!.extras
-//                    bitmap = bundle!!.getParcelable("data")
-//                    val file: File = createImageFile()!!
-//                    if (file != null) {
-//                        val fout: FileOutputStream
-//                        try {
-//                            fout = FileOutputStream(file)
-//                            bitmap!!.compress(Bitmap.CompressFormat.PNG, 70, fout)
-//                            fout.flush()
-//                        } catch (e: Exception) {
-//                            e.printStackTrace()
-//                        }
-//                        uri = Uri.fromFile(file)
-//                    }
-//                    setImage(
-//                        uri.toString(),
-//                        binding.nav.get(0).findViewById(R.id.nav_header_img_user_name),
-//                        resources.getDrawable(R.drawable.ic_launcher_background)
-//                    )
-//
-//                    setProfileImage(uri.toString())
-//                    bitmap = result.data!!.extras!!["data"] as Bitmap?
-//                    //                bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), Uri.parse(result.getData().getExtras().get("data").toString()));
-//                }
+                popup.dismiss()
+
+                var bitmap: Bitmap? = null
+                var uri: Uri? = null
+               if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+
+
+                    setImage(
+                        result.data!!.data.toString(),
+                        binding.nav.get(0).findViewById(R.id.nav_header_img_user_name),
+                        resources.getDrawable(R.drawable.ic_launcher_background)
+                    )
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(
+                            this.getContentResolver(), result.data!!
+                                .data
+                        )
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                } else {
+                    val bundle = result.data!!.extras
+                    bitmap = bundle!!.getParcelable("data")
+                    val file: File = createImageFile()!!
+                    if (file != null) {
+                        val fout: FileOutputStream
+                        try {
+                            fout = FileOutputStream(file)
+                           bitmap!!.compress(Bitmap.CompressFormat.PNG, 70, fout)
+                            fout.flush()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                        uri = Uri.fromFile(file)
+                    }
+                    setImage(
+                       uri.toString(),
+                        binding.nav.get(0).findViewById(R.id.nav_header_img_user_name),
+                        resources.getDrawable(R.drawable.ic_launcher_background)
+                   )
+
+                    setProfileImage(uri.toString())
+                    bitmap = result.data!!.extras!!["data"] as Bitmap?
+                    //                bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), Uri.parse(result.getData().getExtras().get("data").toString()));
+                }
 //                /* imgBase64 = convert(bitmap)
 //                 Log.d("bitmap", imgBase64)*/
 
@@ -836,8 +835,14 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
 
    fun sign_out(){
 
-       sharedPreferences.clearData()
-       sharedPreferences.saveBoolean(Constant.sharedPrefrencesConstant.FIRST_TIME,false)
+       sharedPreferences.saveString(Constant.sharedPrefrencesConstant.X_TOKEN, "")
+       sharedPreferences.saveInteger(Constant.sharedPrefrencesConstant.WALLET_BALANCE, 0)
+       sharedPreferences.saveInteger(Constant.sharedPrefrencesConstant.REFFERAL_AMOUNT, 0)
+       sharedPreferences.saveBoolean(Constant.sharedPrefrencesConstant.LOGIN, false)
+       sharedPreferences.saveBoolean(Constant.sharedPrefrencesConstant.FIRST_TIME, false)
+
+       //sharedPreferences.clearData()
+       //sharedPreferences.saveBoolean(Constant.sharedPrefrencesConstant.FIRST_TIME,false)
        switchActivityOnly(Constant.Intent.Login, true)
    }
 

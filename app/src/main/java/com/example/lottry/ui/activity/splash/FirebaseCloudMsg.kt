@@ -3,16 +3,21 @@ package com.example.lottry.ui.activity.splash
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.graphics.drawable.toIcon
 import com.example.lottry.R
 import com.example.lottry.utils.Constant
+import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 
 class FirebaseCloudMsg : FirebaseMessagingService() {
+
+    lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
     override fun onMessageReceived(message: RemoteMessage) {
         var title = message.notification?.title
@@ -41,7 +46,15 @@ class FirebaseCloudMsg : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         Log.d("Token11111", "Refreshed token: $token")
 
-        Constant.ApiConstant.DEVICE_TOKEN = token
+        sharedPreferencesUtil= SharedPreferencesUtil(this)
+
+        sharedPreferencesUtil.saveString(Constant.sharedPrefrencesConstant.DEVICE_TOKEN, token)
+
+        sharedPreferencesUtil.getString(Constant.sharedPrefrencesConstant.DEVICE_TOKEN)
+            ?.let { Log.d("deviceToken1", it) }
+
+
+        //Constant.ApiConstant.DEVICE_TOKEN = token
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // FCM registration token to your app server.
@@ -50,7 +63,8 @@ class FirebaseCloudMsg : FirebaseMessagingService() {
 
     private fun sendRegistrationToServer(token: String) {
 
-
+        sharedPreferencesUtil.getString(Constant.sharedPrefrencesConstant.DEVICE_TOKEN)
+            ?.let { Log.d("deviceTokenSave", it) }
 
       //  Toast.makeText(this, token, Toast.LENGTH_LONG).show()
     }

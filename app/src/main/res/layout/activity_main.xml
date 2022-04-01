@@ -110,7 +110,7 @@
                 android:id="@+id/share_app"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:background="@drawable/ic_baseline_share_24"
                 app:layout_constraintStart_toEndOf="@+id/copy_to_clip"
                 app:layout_constraintBottom_toBottomOf="parent"

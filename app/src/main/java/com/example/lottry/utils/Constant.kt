@@ -66,6 +66,7 @@ class Constant {
 
     object sharedPrefrencesConstant{
 
+        internal const val DEVICE_TOKEN = "D-token"
         internal const val X_TOKEN="x-token"
         internal const val WALLET_BALANCE="wallet-balance"
         internal const val REFFERAL_AMOUNT="referral-balance"

@@ -1,6 +1,8 @@
 package com.example.lottry.ui.activity.login
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
@@ -78,7 +80,9 @@ class LoginViewModel : ViewModel() {
         requestVerify.phoneNumber=phoneNumber
         requestVerify.otp=otp
         requestVerify.deviceType="Android"
-        requestVerify.deviceToken=Constant.ApiConstant.DEVICE_TOKEN
+        requestVerify.deviceToken = Constant.ApiConstant.DEVICE_TOKEN
+        Log.d("deviceToken", Constant.ApiConstant.DEVICE_TOKEN )
+        //Log.d("deviceTokensh", Constant.sharedPrefrencesConstant.DEVICE_TOKEN)
 
         getResposneOfVerifyOtpFromApi(requestVerify)
 

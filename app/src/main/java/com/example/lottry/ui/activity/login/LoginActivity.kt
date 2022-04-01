@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.provider.Telephony
 import android.telephony.SmsMessage
@@ -13,6 +14,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -33,6 +35,7 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
     lateinit var binding:ActivityLoginBinding
     lateinit var phoneNumber:String
     val permission = ArrayList<String>()
+
 
     lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
@@ -87,6 +90,10 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
             binding.progessBar.visibility= View.VISIBLE
             if(validation()){
 
+                Constant.ApiConstant.DEVICE_TOKEN =
+                    sharedPreferencesUtil.getString(Constant.sharedPrefrencesConstant.DEVICE_TOKEN).toString()
+
+                Log.d("deviceTokensave", sharedPreferencesUtil.getString(Constant.sharedPrefrencesConstant.DEVICE_TOKEN).toString())
 
                 viewModel.verify_otp(this,binding,binding.loginEdtMobileNo.text.toString(),binding.otpView.otp.toString()).observe(this@LoginActivity, Observer {
 
@@ -128,6 +135,7 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
 
     private fun receiveSms() {
         val br = object : BroadcastReceiver(){
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun onReceive(context: Context?, intent: Intent?) {
 
                 for (sms : SmsMessage in Telephony.Sms.Intents.getMessagesFromIntent(intent)){
@@ -144,13 +152,14 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
         registerReceiver(br, IntentFilter("android.provider.Telephony.SMS_RECEIVED"))
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun getOtpFromMessage(message: String) {
-        // This will match any 6 digit number in the message
+        // This will match any 4 digit number in the message
         val pattern = Pattern.compile("(|^)\\d{4}")
         val matcher = pattern.matcher(message)
         if (matcher.find()) {
             Log.d("Otp", matcher.group(0))
-            setOtp(matcher.group(0).toString())
+            setOtp(otp = matcher.group(0))
         }
     }
 
@@ -179,7 +188,31 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
                 Toast.makeText(applicationContext, "Otp sent to your number.", Toast.LENGTH_LONG).show()
                 //Log.d("responseOtp", it.getData()!!.otp)
                 //setOtp(it.getData()!!.otp)
+                    val br = object : BroadcastReceiver(){
+                        @RequiresApi(Build.VERSION_CODES.N)
+                        override fun onReceive(context: Context?, intent: Intent?) {
 
+                            for (sms : SmsMessage in Telephony.Sms.Intents.getMessagesFromIntent(intent)){
+                                //Toast.makeText(applicationContext,sms.displayMessageBody, Toast.LENGTH_LONG).show()
+                                val smsBody = sms.messageBody
+                                Log.d("msgBody", smsBody)
+
+                                val pattern = Pattern.compile("(|^)\\d{4}")
+                                val matcher = pattern.matcher(smsBody)
+                                if (matcher.find()) {
+
+                                    val otp = matcher.group(0).toString()
+                                    Log.d("Otp", otp)
+                                    setOtp(otp)
+                                }
+                                //getOtpFromMessage(smsBody)
+                                //val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
+                                //Log.d("otp", getOtp)
+                                //setOtp(getOtp)
+                            }
+                        }
+                    }
+                    registerReceiver(br, IntentFilter("android.provider.Telephony.SMS_RECEIVED"))
             }else
                 showToast(resources.getString(R.string.you_have_no_data))
 

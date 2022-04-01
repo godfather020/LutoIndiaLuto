@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+
 
     <queries>
         <package android:name="net.one97.paytm" />
@@ -24,11 +27,18 @@
         android:name="com.example.lottry.application.WikiApplication"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@drawable/option_noti"
         android:theme="@style/Theme.Lottry"
         android:usesCleartextTraffic="true">
 
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo" />
 
+       <!-- <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@drawable/logo" />
+-->
         <activity
             android:name="com.example.lottry.ui.activity.splash.SplashActivity"
             android:exported="true"
