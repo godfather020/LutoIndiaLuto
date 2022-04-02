@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.provider.Telephony
 import android.telephony.SmsMessage
 import android.util.Log
@@ -26,11 +27,14 @@ import com.example.lottry.databinding.ActivityLoginBinding
 import com.example.lottry.utils.Constant
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.softs.meetupfellow.components.activity.CustomAppActivityCompatViewImpl
+import java.util.*
+import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
 
 class LoginActivity : CustomAppActivityCompatViewImpl() {
 
     lateinit var btnSubmit:Button
+    lateinit var btnresend:Button
     lateinit var viewModel: LoginViewModel
     lateinit var binding:ActivityLoginBinding
     lateinit var phoneNumber:String
@@ -60,7 +64,8 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
         binding=DataBindingUtil.setContentView(this@LoginActivity,R.layout.activity_login)
         viewModel=ViewModelProvider(this@LoginActivity)[LoginViewModel::class.java]
 
-        receiveSms()
+        //receiveSms()
+
 
         binding.loginEdtMobileNo.afterTextChanged {
 
@@ -68,6 +73,9 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
             if(it.length>=10){
                 binding.progessBar.visibility= View.VISIBLE
                 phoneNumber=it
+                countdownTimer()
+                Toast.makeText(applicationContext, "Otp sent to your number.", Toast.LENGTH_LONG)
+                    .show()
                 getOtp()
 
             }
@@ -82,6 +90,7 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
                 binding.otpView.showSuccess()
             }
         }*/
+        btnresend=findViewById(R.id.login_btn_resend)
 
         btnSubmit=findViewById(R.id.login_btn_submit)
 
@@ -126,12 +135,31 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
                     }
                 })
             }
-
-
-
-
         })
+
+        btnresend.setOnClickListener {
+
+            if(binding.loginEdtMobileNo.text!!.length >= 10){
+                binding.progessBar.visibility= View.VISIBLE
+                phoneNumber= binding.loginEdtMobileNo.text.toString()
+                Log.d("phonenum", phoneNumber)
+                Toast.makeText(applicationContext, "Otp sent to your number.", Toast.LENGTH_LONG)
+                    .show()
+                getOtp()
+
+                binding.resendTimer.visibility = View.VISIBLE
+                countdownTimer()
+                btnresend.visibility = View.GONE
+
+            }
+            else {
+
+                Toast.makeText(applicationContext, "Enter a valid Phone Number", Toast.LENGTH_SHORT).show()
+                binding.loginEdtMobileNo.requestFocus()
+            }
+        }
     }
+
 
     private fun receiveSms() {
         val br = object : BroadcastReceiver(){
@@ -177,18 +205,20 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
 
         hideKeyBoardOnTouchScreen(this.currentFocus!!.rootView)
         binding.otpView.setOTP(otp)
-
+        //this.btnSubmit.callOnClick()
         }
     private fun getOtp(){
 
         viewModel.get_otp(this,binding,phoneNumber).observe(this@LoginActivity, Observer {
 
-            if(it!=null){
+            if (it != null) {
 
-                Toast.makeText(applicationContext, "Otp sent to your number.", Toast.LENGTH_LONG).show()
-                //Log.d("responseOtp", it.getData()!!.otp)
+                //Toast.makeText(applicationContext, "Otp sent to your number.", Toast.LENGTH_LONG).show()
+                hideKeyBoardOnTouchScreen(this.currentFocus!!.rootView)
+                Log.d("responseOtp", it.getData()!!.otp)
+            }
                 //setOtp(it.getData()!!.otp)
-                    val br = object : BroadcastReceiver(){
+                /*val br = object : BroadcastReceiver(){
                         @RequiresApi(Build.VERSION_CODES.N)
                         override fun onReceive(context: Context?, intent: Intent?) {
 
@@ -201,20 +231,26 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
                                 val matcher = pattern.matcher(smsBody)
                                 if (matcher.find()) {
 
-                                    val otp = matcher.group(0).toString()
+                                    otp = matcher.group(0).toString()
                                     Log.d("Otp", otp)
                                     setOtp(otp)
+
                                 }
+
+
                                 //getOtpFromMessage(smsBody)
                                 //val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
                                 //Log.d("otp", getOtp)
                                 //setOtp(getOtp)
                             }
+
                         }
                     }
                     registerReceiver(br, IntentFilter("android.provider.Telephony.SMS_RECEIVED"))
             }else
                 showToast(resources.getString(R.string.you_have_no_data))
+
+        })*/
 
         })
     }
@@ -294,8 +330,35 @@ class LoginActivity : CustomAppActivityCompatViewImpl() {
         const val REQUEST_ID_MULTIPLE_PERMISSIONS = 3
     }
 
+    fun countdownTimer() {
+
+        //60 Second CountDown
+        object : CountDownTimer((Constant.BundelConstant.DURATION * 1000).toLong(), 1000) {
+            override fun onTick(l: Long) {
+                runOnUiThread {
+                    val sDuration = String.format(
+                        Locale.getDefault(),
+                        "%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(l),
+                        TimeUnit.MILLISECONDS.toSeconds(l) -
+                                TimeUnit.MINUTES.toSeconds(
+                                    TimeUnit.MILLISECONDS.toMinutes(
+                                        l
+                                    )
+                                )
+                    )
+                    binding.resendTimer.setText("Resend OTP in " + sDuration)
+                }
+            }
+
+            override fun onFinish() {
+                binding.loginBtnResend.visibility = View.VISIBLE
+                binding.resendTimer.visibility = View.GONE
+            }
+        }.start()
 
 
+    }
 }
 
 

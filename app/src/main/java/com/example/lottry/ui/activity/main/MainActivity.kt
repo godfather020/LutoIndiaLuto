@@ -868,8 +868,7 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
     fun setImageByCamera(result :Intent){
 
 
-
-            popup.dismiss()
+           /* popup.dismiss()
 
             var bitmap: Bitmap? = null
             var uri: Uri? = null
@@ -922,10 +921,14 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
                     resources.getDrawable(R.drawable.ic_launcher_background)
                 )
                 Log.d("imgUri", uri.toString())
-                setProfileImage(uri.toString())
-                bitmap = result.extras!!["data"] as Bitmap?
-                //                bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), Uri.parse(result.getData().getExtras().get("data").toString()));
-            }
+                setProfileImage(uri.toString())*/
+
+                //bitmap = result.extras!!["data"] as Bitmap?
+       /* bitmap = MediaStore.Images.Media.getBitmap(
+            activity.getContentResolver(),
+            Uri.parse(result.getData().getExtras().get("data").toString())*/
+        //);
+     //       }
             /* imgBase64 = convert(bitmap)
              Log.d("bitmap", imgBase64)*/
 

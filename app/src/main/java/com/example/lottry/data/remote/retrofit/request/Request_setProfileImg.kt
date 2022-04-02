@@ -8,6 +8,6 @@ import java.io.File
 class Request_setProfileImg {
 
     @SerializedName("image")
-    var image:String = ""
+    var image: String = ""
 
 }

@@ -4,9 +4,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4cd2c96f0887f3f5b160661a8d865721/transformed/jetified-play-services-measurement-base-20.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4cd2c96f0887f3f5b160661a8d865721/transformed/jetified-play-services-measurement-base-20.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4cd2c96f0887f3f5b160661a8d865721/transformed/jetified-play-services-measurement-base-20.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4cd2c96f0887f3f5b160661a8d865721/transformed/jetified-play-services-measurement-base-20.0.0/res" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4cd2c96f0887f3f5b160661a8d865721/transformed/jetified-play-services-measurement-base-20.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4cd2c96f0887f3f5b160661a8d865721/transformed/jetified-play-services-measurement-base-20.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement-base/20.0.0/ace98f39b262c59be4be4d52b871d1ba5dfff723/play-services-measurement-base-20.0.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement-base/20.0.0/ace98f39b262c59be4be4d52b871d1ba5dfff723/play-services-measurement-base-20.0.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

@@ -133,6 +133,27 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <TextView
+        android:id="@+id/resend_timer"
+        style="@style/TextSubHeader"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/login_btn_submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/_8sdp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_btn_resend"
+        style="@style/Button"
+        android:text="Resend"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/login_btn_submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/_8sdp"
+        />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_btn_submit"
         style="@style/Button"

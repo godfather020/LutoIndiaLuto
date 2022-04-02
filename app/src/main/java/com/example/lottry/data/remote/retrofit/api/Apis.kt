@@ -3,6 +3,7 @@ package com.example.lottry.data.remote.retrofit.api
 import com.example.lottry.data.remote.retrofit.request.*
 import com.example.lottry.data.remote.retrofit.response.Response_Common
 import com.example.lottry.utils.Constant
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -108,4 +109,5 @@ interface Apis {
         @Header (Constant.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Field ("image")image: String
     ):Call<Response_Common>
+
 }

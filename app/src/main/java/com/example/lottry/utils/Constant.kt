@@ -41,6 +41,7 @@ class Constant {
     object BundelConstant{
 
         internal const val PHONE_NO="phone_no"
+        internal const val DURATION = 60
     }
 
     object ApiConstant{

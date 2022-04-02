@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cb8397c9c243f1d9399f7914e97d5296/transformed/jetified-appinvokesdk-1.6.4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cb8397c9c243f1d9399f7914e97d5296/transformed/jetified-appinvokesdk-1.6.4/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cb8397c9c243f1d9399f7914e97d5296/transformed/jetified-appinvokesdk-1.6.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/cb8397c9c243f1d9399f7914e97d5296/transformed/jetified-appinvokesdk-1.6.4/res" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/cb8397c9c243f1d9399f7914e97d5296/transformed/jetified-appinvokesdk-1.6.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/cb8397c9c243f1d9399f7914e97d5296/transformed/jetified-appinvokesdk-1.6.4/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

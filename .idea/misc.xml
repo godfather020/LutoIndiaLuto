@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/91881/AndroidStudioProjects/LutoIndiaLuto/app/src/main/res/layout/activity_login.xml" value="0.20521590423257802" />
         <entry key="app/src/main/res/drawable/custom_radio.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/custom_radio0.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/custom_radio1.xml" value="0.2065" />
@@ -43,7 +44,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
