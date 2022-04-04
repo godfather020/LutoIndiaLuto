@@ -25,6 +25,7 @@ import com.example.lottry.R
 import com.example.lottry.data.remote.retrofit.response.DailyTickets
 import com.example.lottry.data.remote.retrofit.response.Response_Ticket_List
 import com.example.lottry.data.remote.retrofit.response.Row
+import kotlinx.coroutines.newFixedThreadPoolContext
 import java.time.LocalTime
 import java.util.*
 import javax.annotation.Resource
@@ -44,7 +45,7 @@ lateinit var activity:AppCompatActivity
 
 
 
-    constructor(activity:AppCompatActivity, dailyTickets: DailyTickets ) : this() {
+    constructor(activity:AppCompatActivity, dailyTickets: DailyTickets) : this() {
     this.activity=activity
         this.dailyTickets=dailyTickets
         this.row=row
@@ -66,7 +67,7 @@ lateinit var activity:AppCompatActivity
 //        val selectedTicket: Response_Ticket_List=ticketList.get(position)
         holder.item.visibility = View.VISIBLE
 
-       val row=dailyTickets.rows!!.get(position)
+       val row= dailyTickets.rows!![position]
 
         holder.cb_selectTicket.visibility=View.GONE
 
@@ -312,7 +313,7 @@ lateinit var activity:AppCompatActivity
 
     override fun getItemCount(): Int {
 //        TODO("Not yet implemented")
-        return dailyTickets!!.rows!!.size
+        return dailyTickets.rows!!.size
     }
 
     class MyViewHoder : RecyclerView.ViewHolder {

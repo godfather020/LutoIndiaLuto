@@ -10,6 +10,7 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.firebase/firebase-common-ktx/20.1.0/637ef7b888c68b360c4632ccae6322c03cb353f1/firebase-common-ktx-20.1.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-common-ktx/20.1.0/637ef7b888c68b360c4632ccae6322c03cb353f1/firebase-common-ktx-20.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

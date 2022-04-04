@@ -1,37 +1,19 @@
 package com.example.lottry.ui.activity.main
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lottry.R
 import com.example.lottry.application.WikiApplication
 import com.example.lottry.data.remote.retrofit.api.Apis
-import com.example.lottry.data.remote.retrofit.request.Request_Login
-import com.example.lottry.data.remote.retrofit.request.Request_Verify
 import com.example.lottry.data.remote.retrofit.request.Request_setProfileImg
 import com.example.lottry.data.remote.retrofit.response.Response_Common
-import com.example.lottry.databinding.ActivityLoginBinding
 import com.example.lottry.databinding.ActivityMainBinding
 import com.example.lottry.utils.Constant
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
-import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtilInterface
 import com.google.gson.Gson
 import com.google.gson.JsonElement
-import com.google.gson.JsonParser
 import com.softs.meetupfellow.components.activity.CustomAppActivity
-import okhttp3.ResponseBody
-import org.json.JSONArray
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
-import com.google.gson.JsonObject
-
-
-
 
 
 class MainViewModel : ViewModel() {
@@ -64,7 +46,7 @@ class MainViewModel : ViewModel() {
 
         val requestSetprofileimg=Request_setProfileImg()
 
-        requestSetprofileimg.image=imgUrl
+        requestSetprofileimg.image = imgUrl
 
         setImgFromApi(requestSetprofileimg)
         Log.d("reqsetimg", requestSetprofileimg.toString())
@@ -77,17 +59,17 @@ class MainViewModel : ViewModel() {
 
 
 
-   val call:Call<Response_Common> = sharedPreferencesUtil.getString(Constant.sharedPrefrencesConstant.X_TOKEN)?.let {
+   val call: retrofit2.Call<Response_Common> = sharedPreferencesUtil.getString(Constant.sharedPrefrencesConstant.X_TOKEN)?.let {
        apis.setProfileImg(
            it,param.image )}!!
 
        Log.d("paramimg", param.image)
 
-       call.enqueue(object : Callback<Response_Common>{
+       call.enqueue(object : retrofit2.Callback<Response_Common> {
            
            override fun onResponse(
-               call: Call<Response_Common>,
-               response: Response<Response_Common>
+               call: retrofit2.Call<Response_Common>,
+               response: retrofit2.Response<Response_Common>
            ) {
 //               TODO("Not yet implemented")
                Log.d("response", response.toString())
@@ -114,7 +96,7 @@ class MainViewModel : ViewModel() {
                }
            }
 
-           override fun onFailure(call: Call<Response_Common>, t: Throwable) {
+           override fun onFailure(call: retrofit2.Call<Response_Common>, t: Throwable) {
 //               TODO("Not yet implemented")
 //               binding.progessBar.visibility= View.GONE
                activity.showToast(t.toString())

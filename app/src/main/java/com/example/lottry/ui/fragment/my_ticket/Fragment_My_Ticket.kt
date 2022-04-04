@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,13 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lottry.R
 import com.example.lottry.baseclass.fragment.Base_Fragment
 import com.example.lottry.data.remote.retrofit.response.DailyTickets
-import com.example.lottry.data.remote.retrofit.response.Response_Ticket_List
-import com.example.lottry.databinding.FragmentHomeBinding
 import com.example.lottry.databinding.FragmentMyTicketBinding
 import com.example.lottry.ui.activity.main.MainActivity
-import com.example.lottry.ui.fragment.buy_ticket.Adapter_Buy_Ticket
-import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
-import javax.inject.Inject
 
 open class Fragment_My_Ticket :Base_Fragment() {
 
@@ -67,31 +61,37 @@ open class Fragment_My_Ticket :Base_Fragment() {
 
             if(it!=null){
 
+                    //ticketListDaily=it!!.getData()!!.dailyTickets!!.get(i)
+                    ticketListDaily= it.getData()!!.dailyTickets!!
+                    ticketListMonthly = it!!.getData()!!.monthlyTickets!!
+                    ticketListOccationally=it!!.getData()!!.occasionallyTickets!!
 
 
-                ticketListDaily=it!!.getData()!!.dailyTickets!!
-                ticketListMonthly=it!!.getData()!!.monthlyTickets!!
-                ticketListOccationally=it!!.getData()!!.occasionallyTickets!!
 
-                if(ticketListDaily.count!! >0){
+                /*ticketListDaily=it!!.getData()!!.dailyTickets!!
+                ticketListDaily= it.getData().dailyTickets?.get(1)!!
+                ticketListMonthly =it!!.getData()!!.monthlyTickets!!
+                ticketListOccationally=it!!.getData()!!.occasionallyTickets!!*/
+
+             //   if(ticketListDaily.count!!>0){
                     adapterMyTicketDaily=Adapter_My_Ticket(mainActivity,ticketListDaily)
                     binding.myTicketRvLatestDraw.adapter=adapterMyTicketDaily
                     binding.myTicketRvLatestDraw.layoutManager=managerDaily
-                }
-                if(ticketListMonthly.count!!>0){
+             //  }
+               // if(ticketListMonthly.count!!>0){
 
                     adapterMyTicketMonthly=Adapter_My_Ticket(mainActivity,ticketListMonthly)
                     binding.myTicketRvMonthlyDraw.adapter=adapterMyTicketMonthly
                     binding.myTicketRvMonthlyDraw.layoutManager=managerMonthly
 
-                }
-                if(ticketListOccationally.count!!>0){
+               // }
+               // if(ticketListOccationally.count!!>0){
 
                     adapterMyTicketOccationally=Adapter_My_Ticket(mainActivity,ticketListOccationally)
                     binding.myTicketRvOccationDraw.adapter=adapterMyTicketOccationally
                     binding.myTicketRvOccationDraw.layoutManager=managerOccationally
 
-                }
+               // }
 
             }
             else{

@@ -10,6 +10,7 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-wallet/19.0.0/6aad1194851fb24d542f67160c976ddcbdb54f3d/play-services-wallet-19.0.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-wallet/19.0.0/6aad1194851fb24d542f67160c976ddcbdb54f3d/play-services-wallet-19.0.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

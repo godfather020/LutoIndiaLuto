@@ -16,4 +16,5 @@ class DailyTickets {
     @SerializedName("rows")
     @Expose
     var rows: List<Row>? = null
+
 }

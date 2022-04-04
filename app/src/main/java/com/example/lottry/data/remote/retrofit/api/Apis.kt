@@ -106,8 +106,8 @@ interface Apis {
     @FormUrlEncoded
     @POST(Constant.ApiConstant.SET_PROFILE_IMAGE)
     fun setProfileImg(
-        @Header (Constant.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Field ("image")image: String
+        @Header (Constant.sharedPrefrencesConstant.X_TOKEN) x_tocken: String,
+        @Part image: String
     ):Call<Response_Common>
 
 }

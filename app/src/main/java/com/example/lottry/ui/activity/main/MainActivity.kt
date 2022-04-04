@@ -30,6 +30,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.lottry.R
+import com.example.lottry.data.remote.retrofit.api.Apis
+import com.example.lottry.data.remote.retrofit.response.Response_Common
 import com.example.lottry.databinding.ActivityMainBinding
 import com.example.lottry.ui.activity.help.Fragment_help
 import com.example.lottry.ui.fragment.home.Fragment_Home
@@ -41,9 +43,14 @@ import com.example.lottry.utils.Constant
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.Gson
+import com.google.gson.JsonElement
 import com.softs.meetupfellow.components.activity.CustomAppActivityCompatViewImpl
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import de.hdodenhof.circleimageview.CircleImageView
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
@@ -51,6 +58,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 
 class MainActivity : CustomAppActivityCompatViewImpl() {
@@ -69,6 +77,8 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
     private val LOAD_GOOGLEPAY_PAYMENT_DATA_REQUEST_CODE = 991
     private val LOAD_PAYTM_PAYMENT_DATA_REQUEST_CODE = 990
 
+    @Inject
+    lateinit var  apis: Apis
     lateinit var UserName:TextView
     lateinit var PhoneNo:TextView
     lateinit var UserImg:CircleImageView
@@ -940,14 +950,14 @@ class MainActivity : CustomAppActivityCompatViewImpl() {
        popup.dismiss()
 
                 var bitmap: Bitmap? = null
-                val uri: Uri? = null
+                var uri: Uri? = null
                 setImage(
                     result.data!!.toString(),
                     binding.nav.get(0).findViewById(R.id.nav_header_img_user_name),
                     resources.getDrawable(R.drawable.ic_launcher_background)
                 )
 
-                setProfileImage(result.data!!.toString())
+        setProfileImage(result.data!!.toString())
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(
                         this.getContentResolver(), result.data!!
